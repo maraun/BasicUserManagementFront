@@ -38,7 +38,6 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
-import {HasRoleDirective} from "./directives/has-role.directive";
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -73,8 +72,8 @@ const PIPES = [
 
 @NgModule({
   imports: [CommonModule, ...NB_MODULES],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS, HasRoleDirective],
-  declarations: [...COMPONENTS, ...PIPES, HasRoleDirective],
+  exports: [CommonModule, ...PIPES, ...COMPONENTS],
+  declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

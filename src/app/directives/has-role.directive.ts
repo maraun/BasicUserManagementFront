@@ -7,7 +7,7 @@ import {TokenStorageService} from '../auth/token-storage.service';
 })
 export class HasRoleDirective implements OnInit, OnDestroy {
 
-  @Input() appHasRole: Array<string>;
+  @Input() ngxHasRole: Array<string>;
   private roles: string[];
   stop$ = new Subject();
   isVisible = false;
@@ -25,7 +25,7 @@ export class HasRoleDirective implements OnInit, OnDestroy {
         this.viewContainerRef.clear();
       }
 
-      if (this.roles.some(r => this.appHasRole.includes(r))) {
+      if (this.roles.some(r => this.ngxHasRole.includes(r))) {
         if (!this.isVisible) {
           this.isVisible = true;
           this.viewContainerRef.createEmbeddedView(this.templateRef);

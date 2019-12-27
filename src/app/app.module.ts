@@ -20,18 +20,21 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { HasRoleDirective } from './directives/has-role.directive';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {DirectivesModule} from './shared/directives/directives.module';
 
 @NgModule({
-  declarations: [AppComponent, HasRoleDirective],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    CommonModule,
     ThemeModule.forRoot(),
-
+    FormsModule,
+    DirectivesModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
