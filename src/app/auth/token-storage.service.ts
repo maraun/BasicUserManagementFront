@@ -47,4 +47,8 @@ export class TokenStorageService {
 
     return this.roles;
   }
+
+  public checkAvailability(): boolean {
+    return !!localStorage.getItem(TOKEN_KEY);
+  }
 }
