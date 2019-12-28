@@ -18,6 +18,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'cabinet',
+    loadChildren: () => import('app/cabinet/cabinet.module')
+      .then(m => m.CabinetModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'auth',
     loadChildren: () => import('app/auth/auth.module')
       .then(m => m.AuthModule),

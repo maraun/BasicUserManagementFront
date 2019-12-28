@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.router.navigateByUrl('/pages/profile');
+        this.router.navigateByUrl('/cabinet/users');
         /*this.reloadPage();*/
       },
       error => {
