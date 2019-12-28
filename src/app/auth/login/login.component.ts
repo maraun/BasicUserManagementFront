@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth.service';
 import {TokenStorageService} from '../token-storage.service';
 import {AuthLoginInfo} from '../login-info';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-login',
@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
 
     this.loginInfo = new AuthLoginInfo(
       this.form.username,
@@ -43,11 +42,11 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.router.navigateByUrl('/pages/dashboard');
+        this.router.navigateByUrl('/pages/profile');
         /*this.reloadPage();*/
       },
       error => {
-        console.log(error);
+
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       },
