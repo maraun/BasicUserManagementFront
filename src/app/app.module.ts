@@ -23,6 +23,7 @@ import {
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {DirectivesModule} from './shared/directives/directives.module';
+import {httpInterceptorProviders} from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,6 +47,7 @@ import {DirectivesModule} from './shared/directives/directives.module';
     }),
     CoreModule.forRoot(),
   ],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {

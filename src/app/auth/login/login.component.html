@@ -1,7 +1,7 @@
 <p>login works!</p>
 <div *ngIf="isLoggedIn; else loggedOut">
   Logged in as {{roles}}.
-  <a routerLink="pages/dashboard">dashboard</a>
+  Please follow link <a routerLink="pages/dashboard">dashboard</a>
 </div>
 
 <ng-template #loggedOut>
@@ -31,8 +31,5 @@
         </div>
       </div>
     </form>
-    <hr />
-    <p>Don't have an account?</p>
-    <a href="signup" class="btn btn-success">Sign Up</a>
   </div>
 </ng-template>
