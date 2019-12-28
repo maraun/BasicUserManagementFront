@@ -46,12 +46,15 @@
                type="password"
                id="password"
                placeholder="Type password..."
-               [minLength]="6"
+               [minlength]="6"
                required
                />
         <ng-container *ngIf="password.invalid && password.touched">
           <p class="error-message" *ngIf="password.errors?.required">
             Password is required!
+          </p>
+          <p class="error-message" *ngIf="password.errors?.minlength">
+            Password should contains minimum 6 characters
           </p>
         </ng-container>
       </div>
