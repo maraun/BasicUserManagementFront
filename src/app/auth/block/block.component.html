@@ -1,11 +1,17 @@
 <nb-layout>
-  <nb-layout-header><h2>SMU</h2></nb-layout-header>
-  <nb-layout-column class="colored-column-basic">
-    <nb-card size="medium">
+  <nb-layout-column>
+    <nb-card>
+<!--      <nb-card-header>
+        SMU
+      </nb-card-header>-->
       <nb-card-body>
-        <router-outlet></router-outlet>
+        <nb-auth-block>
+          <router-outlet></router-outlet>
+        </nb-auth-block>
       </nb-card-body>
+      <nb-card-footer>
+        Reset password
+      </nb-card-footer>
     </nb-card>
   </nb-layout-column>
-  <nb-layout-footer>Reset password</nb-layout-footer>
 </nb-layout>

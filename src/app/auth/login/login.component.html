@@ -1,35 +1,63 @@
-<p>login works!</p>
 <div *ngIf="isLoggedIn; else loggedOut">
   Logged in as {{roles}}.
   Please follow link <a routerLink="pages/dashboard">dashboard</a>
 </div>
 
 <ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
+
+  <h1 id="title" class="title">Login</h1>
+  <p class="sub-title">Hello! Log in with username</p>
+
+  <nb-alert *ngIf="f.submitted && isLoginFailed" outline="danger" role="alert">
+    <p class="alert-title"><b>Oh snap!</b></p>
+    Login failed: {{errorMessage}}
+  </nb-alert>
+  <nb-alert *ngIf="f.submitted && !isLoginFailed" outline="success" role="alert">
+    <p class="alert-title"><b>Hooray!</b></p>
+    Logging in...
+  </nb-alert>
+
+  
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+      <div class="form-control-group">
+        <label class="label" for="username">Username:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="form.username"
+               #username="ngModel"
+               name="username"
+               id="username"
+               placeholder="Type username..."
+               autofocus
+               type="text"
                required />
-        <div *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors.required">Username is required</div>
-        </div>
+        <ng-container *ngIf="username.invalid && username.touched">
+          <p class="error-message" *ngIf="username.errors?.required">
+            Username is required!
+          </p>
+        </ng-container>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-               required minlength="6" />
-        <div *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-        </div>
+      <div class="form-control-group">
+        <label class="label" for="password">Password:</label>
+        <input nbInput
+               fullWidth
+               [(ngModel)]="form.password"
+               #password="ngModel"
+               name="password"
+               type="password"
+               id="password"
+               placeholder="Type password..."
+               required
+               />
+        <ng-container *ngIf="password.invalid && password.touched">
+          <p class="error-message" *ngIf="password.errors?.required">
+            Password is required!
+          </p>
+        </ng-container>
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary">Login</button>
-        <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-          Login failed: {{errorMessage}}
-        </div>
-      </div>
+        <button nbButton
+                fullWidth>Log In</button>
+
+
     </form>
-  </div>
 </ng-template>

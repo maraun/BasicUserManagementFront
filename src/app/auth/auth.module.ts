@@ -7,7 +7,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { ResetComponent } from './reset/reset.component';
 import { BlockComponent } from './block/block.component';
 import {FormsModule} from '@angular/forms';
-import {NbCardModule, NbLayoutModule} from "@nebular/theme";
+import {NbAlertModule, NbButtonModule, NbCardModule, NbInputModule, NbLayoutModule} from "@nebular/theme";
+import {NbAuthModule} from "@nebular/auth";
 
 
 @NgModule({
@@ -18,6 +19,10 @@ import {NbCardModule, NbLayoutModule} from "@nebular/theme";
     FormsModule,
     NbLayoutModule,
     NbCardModule,
+    NbInputModule,
+    NbButtonModule,
+    NbAlertModule,
+    NbAuthModule,
   ],
 })
 export class AuthModule { }
