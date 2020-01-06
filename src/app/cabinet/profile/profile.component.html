@@ -1,6 +1,10 @@
-<nb-layout>
-  <nb-layout-column>
-    <nb-card accent="info">
+<div class="row">
+  <div class="col-md-6">
+    <nb-card accent="info"
+             [nbSpinner]="loading"
+             nbSpinnerStatus="info"
+             nbSpinnerSize="small"
+             nbSpinnerMessage="">
       <nb-card-header>Profile</nb-card-header>
       <nb-card-body *ngIf="user">
         <div class="form-group row">
@@ -29,12 +33,12 @@
         </div>
       </nb-card-body>
     </nb-card>
-  </nb-layout-column>
-  <nb-layout-column>
+  </div>
+  <div class="col-md-6">
     <nb-card>
       <nb-card-body>
         Card2
       </nb-card-body>
     </nb-card>
-  </nb-layout-column>
-</nb-layout>
+  </div>
+</div>

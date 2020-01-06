@@ -4,7 +4,14 @@ import { CommonModule } from '@angular/common';
 import { CabinetRoutingModule } from './cabinet-routing.module';
 import { CabinetComponent } from './cabinet.component';
 import {ThemeModule} from "../@theme/theme.module";
-import {NbAlertModule, NbBadgeModule, NbCardModule, NbLayoutModule, NbMenuModule} from "@nebular/theme";
+import {
+  NbAlertModule,
+  NbBadgeModule,
+  NbCardModule,
+  NbLayoutModule,
+  NbMenuModule,
+  NbSpinnerModule
+} from "@nebular/theme";
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -19,7 +26,8 @@ import { ProfileComponent } from './profile/profile.component';
     NbLayoutModule,
     NbCardModule,
     NbAlertModule,
-    NbBadgeModule
+    NbBadgeModule,
+    NbSpinnerModule
   ]
 })
 export class CabinetModule { }
