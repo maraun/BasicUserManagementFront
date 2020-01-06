@@ -1,0 +1,40 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card accent="info">
+      <nb-card-header>Profile</nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div class="form-group row">
+          <label for="lastname" class="label col-sm-3 col-form-label">Lastname</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="lastname">{{user.profile.lastname}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="firstname" class="label col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="firstname">{{user.profile.firstname}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="phone" class="label col-sm-3 col-form-label">Phone number</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="phone">{{user.profile.phone}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="label col-sm-3 col-form-label">e-mail</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="email">{{user.email}}</nb-alert>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body>
+        Card2
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
