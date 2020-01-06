@@ -7,6 +7,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({
   selector: 'ngx-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
-  user2: User;
+  firstname: string;
 
   themes = [
     {
@@ -41,18 +42,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile', link: '/pages/profile' }, { title: 'Log out', link: '/auth/logout' } ];
+  userMenu = [ { title: 'Profile', link: '/cabinet/profile' }, { title: 'Log out', link: '/auth/logout' } ];
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
               private userService: UserData,
-              private userService2: UserService,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
-    this.userService2.current().subscribe((perf) => {this.user2 = perf; }, err => {window.alert('Error'); });
+    this.firstname = this.tokenStorage.getFirstname();
     this.currentTheme = this.themeService.currentTheme;
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))

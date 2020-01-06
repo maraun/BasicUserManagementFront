@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  firstname: string = '';
   private loginInfo: AuthLoginInfo;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
@@ -38,11 +39,13 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
+        this.tokenStorage.saveFirstname(data.firstname);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.router.navigateByUrl('/cabinet/users/list');
+        this.firstname = this.tokenStorage.getFirstname();
+        this.router.navigateByUrl('/cabinet/profile');
         /*this.reloadPage();*/
       },
       error => {

@@ -1,6 +1,6 @@
 <div *ngIf="isLoggedIn; else loggedOut">
-  Logged in as {{roles}}.
-  Redirecting to <a routerLink="pages/dashboard">profile page...</a>
+  Logged in as {{firstname}}.
+  Redirecting to <a routerLink="cabinet/profile">profile page...</a>
 </div>
 
 <ng-template #loggedOut>
@@ -13,7 +13,7 @@
     Login failed: {{errorMessage}}
   </nb-alert>
   <nb-alert *ngIf="f.submitted && !isLoginFailed" outline="success" role="alert">
-    <p class="alert-title"><b>Hooray!</b></p>
+    <p class="alert-title"><b>Success!</b></p>
     Logging in...
   </nb-alert>
 
