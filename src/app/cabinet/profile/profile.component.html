@@ -37,7 +37,14 @@
   <div class="col-md-6">
     <nb-card>
       <nb-card-body>
-        Card2
+        <nb-tabset fullWidth>
+          <nb-tab tabTitle="Notifications" tabIcon="bell-outline" responsive badgeText="6+" badgeStatus="danger">
+            <p>List of <strong>notifications</strong>.</p>
+          </nb-tab>
+          <nb-tab tabTitle="Messages" tabIcon="email-outline" responsive badgeText="2+" badgeStatus="success">
+            <p>List of <strong>messages</strong>.</p>
+          </nb-tab>
+        </nb-tabset>
       </nb-card-body>
     </nb-card>
   </div>

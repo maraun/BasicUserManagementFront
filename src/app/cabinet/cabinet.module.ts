@@ -10,7 +10,7 @@ import {
   NbCardModule,
   NbLayoutModule,
   NbMenuModule,
-  NbSpinnerModule
+  NbSpinnerModule, NbTabsetModule
 } from "@nebular/theme";
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -27,7 +27,8 @@ import { ProfileComponent } from './profile/profile.component';
     NbCardModule,
     NbAlertModule,
     NbBadgeModule,
-    NbSpinnerModule
+    NbSpinnerModule,
+    NbTabsetModule
   ]
 })
 export class CabinetModule { }
