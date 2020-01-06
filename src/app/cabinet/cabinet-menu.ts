@@ -8,6 +8,7 @@ export const CMENU_ITEMS: NbMenuItem[] = [
       {
         title: 'List',
         link: '/cabinet/users/list',
+        hidden: false,
       },
       {
         title: 'Roles',
