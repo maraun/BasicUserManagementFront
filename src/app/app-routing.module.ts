@@ -54,8 +54,8 @@ const routes: Routes = [
       },
     ],*/
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '', redirectTo: 'cabinet', pathMatch: 'full' },
+  { path: '**', redirectTo: 'cabinet' },
 ];
 
 const config: ExtraOptions = {

@@ -11,6 +11,11 @@ const routes: Routes = [
     component: CabinetComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'profile',
+        pathMatch: 'full',
+      },
+      {
         path: 'users',
         component: UsersComponent,
         loadChildren: () => import('./users/users.module')
@@ -22,6 +27,11 @@ const routes: Routes = [
       },
     ],
 
+  },
+  {
+    path: '**',
+    redirectTo: 'profile',
+    pathMatch: 'full',
   },
 ];
 
