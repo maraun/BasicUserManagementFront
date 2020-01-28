@@ -30,6 +30,8 @@ export class ListComponent implements OnInit {
       id: {
         title: 'ID',
         type: 'number',
+        width: '30px',
+        sort: true,
       },
       firstname: {
         title: 'Firstname',
@@ -58,6 +60,9 @@ export class ListComponent implements OnInit {
           title: '<i class="nb-edit"></i>',
         },
         ],*/
+    },
+    pager: {
+      display: true,
     },
   };
 
