@@ -1,12 +1,63 @@
 <nb-card>
   <nb-card-header>{{ title }}</nb-card-header>
   <nb-card-body>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis tincidunt tincidunt.
-    Vestibulum vulputate maximus massa vel tristique. Suspendisse potenti. Duis aliquet purus sed dictum dictum.
-    Donec fringilla, purus at fermentum imperdiet, velit enim malesuada turpis, quis luctus arcu arcu nec orci.
-    Duis eu mattis felis. Quisque sollicitudin elementum nunc vel tincidunt. Vestibulum egestas mi nec
-    iaculis varius. Morbi in risus sed sapien ultricies feugiat. Quisque pulvinar mattis purus,
-    in aliquet massa aliquet et.
+    <nb-stepper #stepper>
+      <nb-step [stepControl]="firstForm" label="Login data">
+        <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()" class="step-container">
+          <p class="lorem">
+            Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle,
+            my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up, gravida vizzle, dang.
+          </p>
+          <div class="input-group">
+            <input nbInput type="text" placeholder="Enter your name" class="form-control" formControlName="firstCtrl"
+                   [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+          </div>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="secondForm" label="Profile data">
+        <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="thirdForm" label="General data">
+        <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="fourthForm" label="Contacts data">
+        <form [formGroup]="fourthForm" (ngSubmit)="onFourthSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="fifthForm" label="Login data">
+        <form [formGroup]="firstForm" (ngSubmit)="onFifthSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="sixthForm" label="Login data">
+        <form [formGroup]="sixthForm" (ngSubmit)="onSixthSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="seventhForm" label="Login data">
+        <form [formGroup]="seventhForm" (ngSubmit)="onSeventhSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>next</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="eighthForm" label="Login data">
+        <form [formGroup]="eighthForm" (ngSubmit)="onEighthSubmit()" class="step-container">
+          <button nbButton nbStepperPrevious>prev</button>
+          <button nbButton nbStepperNext>Confirm</button>
+        </form>
+      </nb-step>
+    </nb-stepper>
   </nb-card-body>
   <nb-card-footer>
     <div class="buttons-row">
