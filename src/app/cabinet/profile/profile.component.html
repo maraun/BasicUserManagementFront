@@ -7,19 +7,19 @@
              nbSpinnerMessage="">
       <nb-card-header>Profile</nb-card-header>
       <nb-card-body *ngIf="user">
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="user.profile.lastname">
           <label for="lastname" class="label col-sm-3 col-form-label">Lastname</label>
           <div class="col-sm-9">
             <nb-alert fullWidth id="lastname">{{user.profile.lastname}}</nb-alert>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="user.profile.firstname">
           <label for="firstname" class="label col-sm-3 col-form-label">Name</label>
           <div class="col-sm-9">
             <nb-alert fullWidth id="firstname">{{user.profile.firstname}}</nb-alert>
           </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="user.profile.middlename">
           <label for="middlename" class="label col-sm-3 col-form-label">Middlename</label>
           <div class="col-sm-9">
             <nb-alert fullWidth id="middlename">{{user.profile.middlename}}</nb-alert>
