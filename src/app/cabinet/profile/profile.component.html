@@ -20,33 +20,128 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="phone" class="label col-sm-3 col-form-label">Phone number</label>
+          <label for="middlename" class="label col-sm-3 col-form-label">Middlename</label>
           <div class="col-sm-9">
-            <nb-alert fullWidth id="phone">{{user.profile.phone}}</nb-alert>
+            <nb-alert fullWidth id="middlename">{{user.profile.middlename}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.previouslastname">
+          <label for="previouslastname" class="label col-sm-3 col-form-label">Previous Lastname</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="previouslastname">{{user.profile.previouslastname}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.iin">
+          <label for="iin" class="label col-sm-3 col-form-label">IIN</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="iin">{{user.profile.iin}}</nb-alert>
           </div>
         </div>
         <div class="form-group row">
-          <label for="email" class="label col-sm-3 col-form-label">e-mail</label>
+          <label for="birthdate" class="label col-sm-3 col-form-label">Birth Date</label>
           <div class="col-sm-9">
-            <nb-alert fullWidth id="email">{{user.email}}</nb-alert>
+            <nb-alert fullWidth id="birthdate">{{user.profile.birthdate | date}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.nationality.name">
+          <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="nationality">{{user.profile.nationality.name}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.citizenship.name">
+          <label for="citizenship" class="label col-sm-3 col-form-label">Citizenship</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="citizenship">{{user.profile.citizenship.name}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.gender.name">
+          <label for="gender" class="label col-sm-3 col-form-label">Gender</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="gender">{{user.profile.gender.name}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.maritalStatus.name">
+          <label for="maritalStatus" class="label col-sm-3 col-form-label">Marital Status</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="maritalStatus">{{user.profile.maritalStatus.name}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.livingPlace">
+          <label for="livingPlace" class="label col-sm-3 col-form-label">Living Place</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="livingPlace">{{user.profile.livingPlace}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.profile.registrationPlace">
+          <label for="registrationPlace" class="label col-sm-3 col-form-label">Registration Place</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="registrationPlace">{{user.profile.registrationPlace}}</nb-alert>
           </div>
         </div>
       </nb-card-body>
     </nb-card>
   </div>
   <div class="col-md-6">
-    <nb-card>
-      <nb-card-body>
-        <nb-tabset fullWidth>
-          <nb-tab tabTitle="Notifications" tabIcon="bell-outline" responsive badgeText="6+" badgeStatus="danger">
-            <p>List of <strong>notifications</strong>.</p>
-            <p>Coming soon...</p>
-          </nb-tab>
-          <nb-tab tabTitle="Messages" tabIcon="email-outline" responsive badgeText="2+" badgeStatus="success">
-            <p>List of <strong>messages</strong>.</p>
-            <p>Coming soon...</p>
-          </nb-tab>
-        </nb-tabset>
+    <nb-card accent="success"
+             [nbSpinner]="loading"
+             nbSpinnerStatus="info"
+             nbSpinnerSize="small"
+             nbSpinnerMessage="">
+      <nb-card-header>Additional</nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div class="form-group row" *ngIf="user.username">
+          <label for="username" class="label col-sm-3 col-form-label">Username</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="username">{{user.username}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.contacts.email">
+          <label for="email" class="label col-sm-3 col-form-label">e-mail</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="email">{{user.contacts.email}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.contacts.mobilephone">
+          <label for="mobilephone" class="label col-sm-3 col-form-label">Mobile phone</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="mobilephone">{{user.contacts.mobilephone}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.contacts.workphone">
+          <label for="workphone" class="label col-sm-3 col-form-label">Work phone</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="workphone">{{user.contacts.workphone}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.contacts.homephone">
+          <label for="homephone" class="label col-sm-3 col-form-label">Home phone</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="homephone">{{user.contacts.homephone}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.positions">
+          <label for="positions" class="label col-sm-3 col-form-label">Positions</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="positions" *ngFor="let position of user.positions"
+                      nbPopover="{{position.starttime | date}} - {{position.finishtime | date}}" nbPopoverTrigger="hover"
+            >{{position.organization}} : {{position.position}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.documents">
+          <label for="documents" class="label col-sm-3 col-form-label">Documents</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="documents" *ngFor="let document of user.documents"
+                      nbPopover="{{document.issuedPlace}} : {{document.issuedDate | date}} - {{document.validityDate | date}}" nbPopoverTrigger="hover"
+            >{{document.type}} : {{document.identityNumber}} | {{document.serialNumber}}</nb-alert>
+          </div>
+        </div>
+        <div class="form-group row" *ngIf="user.additional.information">
+          <label for="additional" class="label col-sm-3 col-form-label">Additional information</label>
+          <div class="col-sm-9">
+            <nb-alert fullWidth id="additional">{{user.additional.information}}</nb-alert>
+          </div>
+        </div>
       </nb-card-body>
     </nb-card>
   </div>

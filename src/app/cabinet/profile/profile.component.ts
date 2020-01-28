@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../models/user';
-import {UserService} from '../../services/user.service';
+import {User} from '../../@core/models/profile/user';
+import {UserService} from '../../@core/services/user.service';
 import {NbIconConfig, NbToastrService} from '@nebular/theme';
 
 @Component({
