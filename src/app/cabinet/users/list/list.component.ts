@@ -3,6 +3,8 @@ import {LocalDataSource, ViewCell} from 'ng2-smart-table';
 import {UserService} from '../../../@core/services/user.service';
 import {User} from '../../../@core/models/profile/user';
 import {Profile} from '../../../@core/models/profile/profile';
+import {NbDialogService} from '@nebular/theme';
+import {ModalComponent} from './modal/modal.component';
 @Component({
   selector: 'ngx-button-view',
   template: `
@@ -80,7 +82,8 @@ export class ListComponent implements OnInit {
         renderComponent: ButtonViewComponent,
         onComponentInitFunction(instance) {
           instance.save.subscribe(row => {
-            alert(`${row.id} clicked!`);
+            this.openModal();
+            /*alert(`${row.id} clicked!`);*/
           });
         },
       },
@@ -103,7 +106,7 @@ export class ListComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
   users: Profile[] = [];
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private dialogService: NbDialogService) {}
 
   ngOnInit() {
     this.fetchAll();
@@ -120,6 +123,13 @@ export class ListComponent implements OnInit {
     } else {
       event.confirm.reject();
     }
+  }
+  openModal() {
+    this.dialogService.open(ModalComponent, {
+      context: {
+        title: 'This is a title passed to the dialog component',
+      },
+    });
   }
 
 }
