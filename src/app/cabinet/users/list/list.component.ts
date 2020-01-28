@@ -1,8 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import {LocalDataSource} from 'ng2-smart-table';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {LocalDataSource, ViewCell} from 'ng2-smart-table';
 import {UserService} from '../../../@core/services/user.service';
 import {User} from '../../../@core/models/profile/user';
 import {Profile} from '../../../@core/models/profile/profile';
+@Component({
+  selector: 'ngx-button-view',
+  template: `
+    <button (click)="onClick()" nbButton ghost status="primary" size="tiny">
+      <nb-icon icon="eye"></nb-icon>
+    </button>
+  `,
+})
+export class ButtonViewComponent implements ViewCell, OnInit {
+  renderValue: string;
+
+  @Input() value: string | number;
+  @Input() rowData: any;
+
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  ngOnInit() {
+    this.renderValue = this.value.toString().toUpperCase();
+  }
+
+  onClick() {
+    this.save.emit(this.rowData);
+  }
+}
 
 @Component({
   selector: 'ngx-list',
@@ -48,6 +72,17 @@ export class ListComponent implements OnInit {
       iin: {
         title: 'IIN',
         type: 'string',
+      },
+      button: {
+        title: 'Action',
+        type: 'custom',
+        width: '30px',
+        renderComponent: ButtonViewComponent,
+        onComponentInitFunction(instance) {
+          instance.save.subscribe(row => {
+            alert(`${row.id} clicked!`);
+          });
+        },
       },
     },
     actions: {
