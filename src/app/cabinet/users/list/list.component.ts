@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
-import {UserService} from '../../../services/user.service';
-import {User} from '../../../models/user';
+import {UserService} from '../../../@core/services/user.service';
+import {User} from '../../../@core/models/profile/user';
+import {Profile} from '../../../@core/models/profile/profile';
 
 @Component({
   selector: 'ngx-list',
@@ -11,7 +12,7 @@ import {User} from '../../../models/user';
 export class ListComponent implements OnInit {
 
   settings = {
-    add: {
+/*    add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
@@ -24,29 +25,44 @@ export class ListComponent implements OnInit {
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
       confirmDelete: true,
-    },
+    },*/
     columns: {
       id: {
         title: 'ID',
         type: 'number',
       },
-      username: {
-        title: 'Username',
+      firstname: {
+        title: 'Firstname',
         type: 'string',
       },
-      email: {
-        title: 'E-mail',
+      lastname: {
+        title: 'Lastname',
         type: 'string',
       },
-      profile: {
-        title: 'Profile',
-        type: 'Profile',
+      middlename: {
+        title: 'Middlename',
+        type: 'string',
       },
+      iin: {
+        title: 'IIN',
+        type: 'string',
+      },
+    },
+    actions: {
+      add: false,
+      edit: false,
+      delete: false,
+/*      custom: [
+        {
+          name: 'view',
+          title: '<i class="nb-edit"></i>',
+        },
+        ],*/
     },
   };
 
   source: LocalDataSource = new LocalDataSource();
-  users: User[] = [];
+  users: Profile[] = [];
   constructor(private userService: UserService) {}
 
   ngOnInit() {
