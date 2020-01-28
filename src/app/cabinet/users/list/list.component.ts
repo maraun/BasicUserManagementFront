@@ -79,10 +79,11 @@ export class ListComponent implements OnInit {
         title: 'Action',
         type: 'custom',
         width: '30px',
+        filter: false,
         renderComponent: ButtonViewComponent,
-        onComponentInitFunction(instance) {
+        onComponentInitFunction: (instance) => {
           instance.save.subscribe(row => {
-            this.openModal();
+            this.openModal(row.id);
             /*alert(`${row.id} clicked!`);*/
           });
         },
@@ -124,10 +125,10 @@ export class ListComponent implements OnInit {
       event.confirm.reject();
     }
   }
-  openModal() {
+  openModal(id) {
     this.dialogService.open(ModalComponent, {
       context: {
-        title: 'This is a title passed to the dialog component',
+        title: `${id} clicked! This is a title passed to the dialog component`,
       },
     });
   }
