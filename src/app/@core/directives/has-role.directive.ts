@@ -1,6 +1,6 @@
 import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Subject} from 'rxjs';
-import {TokenStorageService} from '../auth/token-storage.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Directive({
   selector: '[ngxHasRole]',
