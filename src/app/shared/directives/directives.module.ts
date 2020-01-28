@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HasRoleDirective} from '../../directives/has-role.directive';
+import {HasRoleDirective} from '../../@core/directives/has-role.directive';
 
 
 

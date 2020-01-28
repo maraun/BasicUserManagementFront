@@ -5,8 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
-import {User} from '../../../models/user';
-import {UserService} from '../../../services/user.service';
+import {User} from '../../../@core/models/profile/user';
+import {UserService} from '../../../@core/services/user.service';
 import {TokenStorageService} from '../../../auth/token-storage.service';
 
 @Component({

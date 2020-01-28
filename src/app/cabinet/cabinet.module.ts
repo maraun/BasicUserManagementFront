@@ -5,12 +5,12 @@ import { CabinetRoutingModule } from './cabinet-routing.module';
 import { CabinetComponent } from './cabinet.component';
 import {ThemeModule} from "../@theme/theme.module";
 import {
-  NbAlertModule,
-  NbBadgeModule,
-  NbCardModule,
-  NbLayoutModule,
-  NbMenuModule,
-  NbSpinnerModule, NbTabsetModule
+    NbAlertModule,
+    NbBadgeModule,
+    NbCardModule,
+    NbLayoutModule,
+    NbMenuModule, NbPopoverModule,
+    NbSpinnerModule, NbTabsetModule
 } from "@nebular/theme";
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -18,17 +18,18 @@ import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [CabinetComponent, UsersComponent, ProfileComponent],
-  imports: [
-    CommonModule,
-    CabinetRoutingModule,
-    ThemeModule,
-    NbMenuModule,
-    NbLayoutModule,
-    NbCardModule,
-    NbAlertModule,
-    NbBadgeModule,
-    NbSpinnerModule,
-    NbTabsetModule
-  ]
+    imports: [
+        CommonModule,
+        CabinetRoutingModule,
+        ThemeModule,
+        NbMenuModule,
+        NbLayoutModule,
+        NbCardModule,
+        NbAlertModule,
+        NbBadgeModule,
+        NbSpinnerModule,
+        NbTabsetModule,
+        NbPopoverModule
+    ]
 })
 export class CabinetModule { }
