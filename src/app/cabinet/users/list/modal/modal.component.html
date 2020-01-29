@@ -88,12 +88,82 @@
           </nb-step>
           <nb-step [stepControl]="secondForm" label="Contacts info">
             <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container">
+              <div class="form-group row">
+                <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
+                <div class="col-sm-9">
+                  <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality">
+                    <nb-option value="KAZAKH">Kazakh</nb-option>
+                    <nb-option value="RUSSIAN">Russian</nb-option>
+                    <nb-option value="AMERICAN">American</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="citizenship" class="label col-sm-3 col-form-label">Citizenship</label>
+                <div class="col-sm-9">
+                  <nb-select fullWidth placeholder="Enter citizenship" id="citizenship" formControlName="citizenship">
+                    <nb-option value="KAZAKHSTAN">Kazakhstan</nb-option>
+                    <nb-option value="RUSSIANFEDERATION">Russian Federation</nb-option>
+                    <nb-option value="USA">USA</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="livingPlace" class="label col-sm-3 col-form-label">Living place</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter living place" id="livingPlace" class="form-control"
+                         formControlName="livingPlace"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="registrationPlace" class="label col-sm-3 col-form-label">Registration place</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter registration place" id="registrationPlace" class="form-control"
+                         formControlName="registrationPlace"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                </div>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <label for="email" class="label col-sm-3 col-form-label">e-mail</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter email" id="email" class="form-control"
+                         formControlName="email"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="mobilePhone" class="label col-sm-3 col-form-label">Mobile phone</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter mobile phone" id="mobilePhone" class="form-control"
+                         formControlName="mobilePhone"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="workPhone" class="label col-sm-3 col-form-label">Work phone</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter work phone" id="workPhone" class="form-control"
+                         formControlName="workPhone"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="homePhone" class="label col-sm-3 col-form-label">Home phone</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter home phone" id="homePhone" class="form-control"
+                         formControlName="homePhone"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                </div>
+              </div>
               <button nbButton nbStepperPrevious>prev</button>
               <button nbButton nbStepperNext>next</button>
             </form>
           </nb-step>
           <nb-step [stepControl]="thirdForm" label="Additional info">
             <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
+
               <button nbButton nbStepperPrevious>prev</button>
               <button nbButton nbStepperNext>next</button>
             </form>

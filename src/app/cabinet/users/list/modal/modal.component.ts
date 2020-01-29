@@ -33,7 +33,14 @@ export class ModalComponent implements OnInit {
     });
 
     this.secondForm = this.fb.group({
-      secondCtrl: ['', Validators.required],
+      nationality: ['', Validators.required],
+      citizenship: ['', Validators.required],
+      livingPlace: ['', Validators.required],
+      registrationPlace: ['', Validators.required],
+      email: ['', Validators.required],
+      mobilePhone: ['', Validators.required],
+      workPhone: ['', Validators.required],
+      homePhone: ['', Validators.required],
     });
 
     this.thirdForm = this.fb.group({
