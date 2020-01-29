@@ -44,7 +44,7 @@ export class ModalComponent implements OnInit {
     });
 
     this.thirdForm = this.fb.group({
-      thirdCtrl: ['', Validators.required],
+      additional: ['', Validators.required],
     });
 
   }
