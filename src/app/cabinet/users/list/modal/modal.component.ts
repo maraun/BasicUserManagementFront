@@ -33,39 +33,39 @@ export class ModalComponent implements OnInit {
     if (this.id === 0) {
       this.user = new User();
     } else {
-    this.userService.getByProfileId(this.id).subscribe((perf) => {
-        this.user = perf;
-        this.loading = false;
-        this.userLoaded();
-        this.firstForm = this.fb.group({
-          iin: [this.user.username, Validators.required],
-          password: ['*', Validators.required],
-          lastname: [this.user.profile.lastname, Validators.required],
-          name: [this.user.profile.firstname, Validators.required],
-          middlename: [this.user.profile.middlename],
-          previousLastname: [this.user.profile.previouslastname],
-          birthDate: [this.user.profile.birthdate, Validators.required],
-          gender: [this.user.profile.gender.name, Validators.required],
-          maritalStatus: [this.user.profile.maritalStatus.name, Validators.required],
-        });
-        this.secondForm = this.fb.group({
-          nationality: [this.user.profile.nationality.name, Validators.required],
-          citizenship: [this.user.profile.citizenship.name, Validators.required],
-          livingPlace: [this.user.profile.livingPlace, Validators.required],
-          registrationPlace: [this.user.profile.registrationPlace, Validators.required],
-          email: [this.user.contacts.email, Validators.required],
-          mobilePhone: [this.user.contacts.mobilephone, Validators.required],
-          workPhone: [this.user.contacts.workphone, Validators.required],
-          homePhone: [this.user.contacts.homephone],
-        });
+      this.userService.getByProfileId(this.id).subscribe((perf) => {
+          this.user = perf;
+          this.loading = false;
+          this.userLoaded();
+          this.firstForm = this.fb.group({
+            iin: [this.user.username, Validators.required],
+            password: ['*', Validators.required],
+            lastname: [this.user.profile.lastname, Validators.required],
+            name: [this.user.profile.firstname, Validators.required],
+            middlename: [this.user.profile.middlename],
+            previousLastname: [this.user.profile.previouslastname],
+            birthDate: [this.user.profile.birthdate, Validators.required],
+            gender: [this.user.profile.gender.name, Validators.required],
+            maritalStatus: [this.user.profile.maritalStatus.name, Validators.required],
+          });
+          this.secondForm = this.fb.group({
+            nationality: [this.user.profile.nationality.name, Validators.required],
+            citizenship: [this.user.profile.citizenship.name, Validators.required],
+            livingPlace: [this.user.profile.livingPlace, Validators.required],
+            registrationPlace: [this.user.profile.registrationPlace, Validators.required],
+            email: [this.user.contacts.email, Validators.required],
+            mobilePhone: [this.user.contacts.mobilephone, Validators.required],
+            workPhone: [this.user.contacts.workphone, Validators.required],
+            homePhone: [this.user.contacts.homephone],
+          });
 
-        this.thirdForm = this.fb.group({
-          additional: [this.user.additional.information],
+          this.thirdForm = this.fb.group({
+            additional: [this.user.additional.information],
+          });
+        },
+        err => {
+          this.showErrorToast();
         });
-      },
-      err => {
-        this.showErrorToast();
-      });
     }
   }
 
@@ -79,11 +79,27 @@ export class ModalComponent implements OnInit {
 
   onThirdSubmit() {
     this.thirdForm.markAsDirty();
+    this.user.profile.iin = this.firstForm.get('iin').value;
+    if (this.id === 0) {
+      this.showCreateToast();
+    } else {
+      this.showUpdateToast();
+    }
   }
 
   showErrorToast() {
     const iconConfig: NbIconConfig = {icon: 'cloud-download-outline', pack: 'eva', status: 'danger'};
     this.toastrService.show('Data loading error', `Error`, iconConfig);
+  }
+
+  showUpdateToast() {
+    const iconConfig: NbIconConfig = {icon: 'cloud-upload-outline', pack: 'eva', status: 'success'};
+    this.toastrService.show('Changes saved', `Done`, iconConfig);
+  }
+
+  showCreateToast() {
+    const iconConfig: NbIconConfig = {icon: 'cloud-upload-outline', pack: 'eva', status: 'success'};
+    this.toastrService.show('User created', `Done`, iconConfig);
   }
 
   initForm() {
