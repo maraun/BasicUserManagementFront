@@ -128,7 +128,7 @@ export class ListComponent implements OnInit {
   openModal(id) {
     this.dialogService.open(ModalComponent, {
       context: {
-        title: `${id} clicked! This is a title passed to the dialog component`,
+        id: id,
       },
     });
   }

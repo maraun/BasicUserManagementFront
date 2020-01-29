@@ -1,7 +1,10 @@
 <div class="steppers-container row">
   <div class="col-sm-12 col-md-12">
     <nb-card>
-      <nb-card-header>{{ title }}</nb-card-header>
+      <nb-card-header>
+        <div *ngIf="userExist; else newUser">Edit {{ user.profile.firstname }}'s info</div>
+        <ng-template #newUser>Create new user</ng-template>
+      </nb-card-header>
       <nb-card-body>
         <nb-stepper #stepper>
           <nb-step [stepControl]="firstForm" label="Account info">
@@ -42,7 +45,8 @@
               <div class="form-group row">
                 <label for="middlename" class="label col-sm-3 col-form-label">Middlename</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter middlename" id="middlename" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter middlename" id="middlename"
+                         class="form-control"
                          formControlName="middlename"
                          [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
                 </div>
@@ -50,7 +54,8 @@
               <div class="form-group row">
                 <label for="previousLastname" class="label col-sm-3 col-form-label">Previous Lastname</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter previousLastname" id="previousLastname" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter previousLastname" id="previousLastname"
+                         class="form-control"
                          formControlName="previousLastname"
                          [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
                 </div>
@@ -77,7 +82,8 @@
               <div class="form-group row">
                 <label for="maritalStatus" class="label col-sm-3 col-form-label">Marital Status</label>
                 <div class="col-sm-9">
-                  <nb-select fullWidth placeholder="Enter marital status" id="maritalStatus" formControlName="maritalStatus">
+                  <nb-select fullWidth placeholder="Enter marital status" id="maritalStatus"
+                             formControlName="maritalStatus">
                     <nb-option value="SINGLE">Single</nb-option>
                     <nb-option value="MARRIED">Married</nb-option>
                   </nb-select>
@@ -111,7 +117,8 @@
               <div class="form-group row">
                 <label for="livingPlace" class="label col-sm-3 col-form-label">Living place</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter living place" id="livingPlace" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter living place" id="livingPlace"
+                         class="form-control"
                          formControlName="livingPlace"
                          [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
@@ -119,7 +126,8 @@
               <div class="form-group row">
                 <label for="registrationPlace" class="label col-sm-3 col-form-label">Registration place</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter registration place" id="registrationPlace" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter registration place" id="registrationPlace"
+                         class="form-control"
                          formControlName="registrationPlace"
                          [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
@@ -136,7 +144,8 @@
               <div class="form-group row">
                 <label for="mobilePhone" class="label col-sm-3 col-form-label">Mobile phone</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter mobile phone" id="mobilePhone" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter mobile phone" id="mobilePhone"
+                         class="form-control"
                          formControlName="mobilePhone"
                          [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
@@ -144,7 +153,8 @@
               <div class="form-group row">
                 <label for="workPhone" class="label col-sm-3 col-form-label">Work phone</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter work phone" id="workPhone" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter work phone" id="workPhone"
+                         class="form-control"
                          formControlName="workPhone"
                          [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
@@ -152,7 +162,8 @@
               <div class="form-group row">
                 <label for="homePhone" class="label col-sm-3 col-form-label">Home phone</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter home phone" id="homePhone" class="form-control"
+                  <input nbInput fullWidth type="text" placeholder="Enter home phone" id="homePhone"
+                         class="form-control"
                          formControlName="homePhone"
                          [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
@@ -166,8 +177,9 @@
               <div class="form-group row">
                 <label for="additional" class="label col-sm-3 col-form-label">Additional information</label>
                 <div class="col-sm-9">
-                  <textarea fullWidth type="text" placeholder="Enter additional information" id="additional" class="form-control"
-                         formControlName="additional"
+                  <textarea fullWidth type="text" placeholder="Enter additional information" id="additional"
+                            class="form-control"
+                            formControlName="additional"
                             [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"></textarea>
                 </div>
               </div>

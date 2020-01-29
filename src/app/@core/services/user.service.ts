@@ -11,10 +11,14 @@ import {Profile} from '../models/profile/profile';
 export class UserService {
   apiUrl = environment.apiUrl + '/api/profile/users';
   apiUrl2 = environment.apiUrl + '/api/profile/profile';
+
   constructor(public http: HttpClient) { }
 
   public current(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/current`);
+  }
+  public getByProfileId(id): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/pid/${id}`);
   }
    public findAll(): Observable<Profile[]> {
     return this.http.get<Profile[]>(this.apiUrl2);

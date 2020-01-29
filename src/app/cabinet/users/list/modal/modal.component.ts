@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NbDialogRef} from '@nebular/theme';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NbDialogRef, NbIconConfig, NbToastrService} from '@nebular/theme';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../../../@core/models/profile/user';
+import {UserService} from '../../../../@core/services/user.service';
 
 @Component({
   selector: 'ngx-modal',
@@ -8,45 +10,63 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  @Input() title: string;
+  @Input() id: number;
 
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  constructor(protected ref: NbDialogRef<ModalComponent>, private fb: FormBuilder) { }
+  user: User = null;
+  loading = false;
+  userExist = false;
+
+  constructor(protected ref: NbDialogRef<ModalComponent>, private fb: FormBuilder,
+              private toastrService: NbToastrService, private userService: UserService) {
+  }
 
   dismiss() {
     this.ref.close();
   }
 
   ngOnInit() {
-    this.firstForm = this.fb.group({
-      iin: ['', Validators.required],
-      password: ['', Validators.required],
-      lastname: ['', Validators.required],
-      name: ['', Validators.required],
-      middlename: [''],
-      previousLastname: [''],
-      birthDate: ['', Validators.required],
-      gender: ['', Validators.required],
-      maritalStatus: ['', Validators.required],
-    });
+    this.initForm();
+    this.loading = true;
+    if (this.id === 0) {
+      this.user = new User();
+    } else {
+    this.userService.getByProfileId(this.id).subscribe((perf) => {
+        this.user = perf;
+        this.loading = false;
+        this.userLoaded();
+        this.firstForm = this.fb.group({
+          iin: [this.user.username, Validators.required],
+          password: ['*', Validators.required],
+          lastname: [this.user.profile.lastname, Validators.required],
+          name: [this.user.profile.firstname, Validators.required],
+          middlename: [this.user.profile.middlename],
+          previousLastname: [this.user.profile.previouslastname],
+          birthDate: [this.user.profile.birthdate, Validators.required],
+          gender: [this.user.profile.gender.name, Validators.required],
+          maritalStatus: [this.user.profile.maritalStatus.name, Validators.required],
+        });
+        this.secondForm = this.fb.group({
+          nationality: [this.user.profile.nationality.name, Validators.required],
+          citizenship: [this.user.profile.citizenship.name, Validators.required],
+          livingPlace: [this.user.profile.livingPlace, Validators.required],
+          registrationPlace: [this.user.profile.registrationPlace, Validators.required],
+          email: [this.user.contacts.email, Validators.required],
+          mobilePhone: [this.user.contacts.mobilephone, Validators.required],
+          workPhone: [this.user.contacts.workphone, Validators.required],
+          homePhone: [this.user.contacts.homephone],
+        });
 
-    this.secondForm = this.fb.group({
-      nationality: ['', Validators.required],
-      citizenship: ['', Validators.required],
-      livingPlace: ['', Validators.required],
-      registrationPlace: ['', Validators.required],
-      email: ['', Validators.required],
-      mobilePhone: ['', Validators.required],
-      workPhone: ['', Validators.required],
-      homePhone: ['', Validators.required],
-    });
-
-    this.thirdForm = this.fb.group({
-      additional: ['', Validators.required],
-    });
-
+        this.thirdForm = this.fb.group({
+          additional: [this.user.additional.information],
+        });
+      },
+      err => {
+        this.showErrorToast();
+      });
+    }
   }
 
   onFirstSubmit() {
@@ -61,4 +81,43 @@ export class ModalComponent implements OnInit {
     this.thirdForm.markAsDirty();
   }
 
+  showErrorToast() {
+    const iconConfig: NbIconConfig = {icon: 'cloud-download-outline', pack: 'eva', status: 'danger'};
+    this.toastrService.show('Data loading error', `Error`, iconConfig);
+  }
+
+  initForm() {
+    this.firstForm = new FormGroup({
+      iin: new FormControl(),
+      password: new FormControl(),
+      lastname: new FormControl(),
+      name: new FormControl(),
+      middlename: new FormControl(),
+      previousLastname: new FormControl(),
+      birthDate: new FormControl(),
+      gender: new FormControl(),
+      maritalStatus: new FormControl(),
+    });
+    this.secondForm = new FormGroup({
+      nationality: new FormControl(),
+      citizenship: new FormControl(),
+      livingPlace: new FormControl(),
+      registrationPlace: new FormControl(),
+      email: new FormControl(),
+      mobilePhone: new FormControl(),
+      workPhone: new FormControl(),
+      homePhone: new FormControl(),
+    });
+    this.thirdForm = new FormGroup({
+      additional: new FormControl(),
+    });
+  }
+
+  userLoaded() {
+    if (!!this.user) {
+      this.userExist = true;
+    } else {
+      this.userExist = false;
+    }
+  }
 }
