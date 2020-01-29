@@ -1,68 +1,110 @@
-<nb-card>
-  <nb-card-header>{{ title }}</nb-card-header>
-  <nb-card-body>
-    <nb-stepper #stepper>
-      <nb-step [stepControl]="firstForm" label="Login data">
-        <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()" class="step-container">
-          <p class="lorem">
-            Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle,
-            my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up, gravida vizzle, dang.
-          </p>
-          <div class="input-group">
-            <input nbInput type="text" placeholder="Enter your name" class="form-control" formControlName="firstCtrl"
-                   [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
-          </div>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="secondForm" label="Profile data">
-        <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="thirdForm" label="General data">
-        <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="fourthForm" label="Contacts data">
-        <form [formGroup]="fourthForm" (ngSubmit)="onFourthSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="fifthForm" label="Login data">
-        <form [formGroup]="firstForm" (ngSubmit)="onFifthSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="sixthForm" label="Login data">
-        <form [formGroup]="sixthForm" (ngSubmit)="onSixthSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="seventhForm" label="Login data">
-        <form [formGroup]="seventhForm" (ngSubmit)="onSeventhSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>next</button>
-        </form>
-      </nb-step>
-      <nb-step [stepControl]="eighthForm" label="Login data">
-        <form [formGroup]="eighthForm" (ngSubmit)="onEighthSubmit()" class="step-container">
-          <button nbButton nbStepperPrevious>prev</button>
-          <button nbButton nbStepperNext>Confirm</button>
-        </form>
-      </nb-step>
-    </nb-stepper>
-  </nb-card-body>
-  <nb-card-footer>
-    <div class="buttons-row">
-      <button nbButton hero status="success" (click)="dismiss()">Save</button>
-      <button nbButton hero status="danger" (click)="dismiss()">Close</button>
-    </div>
-  </nb-card-footer>
-</nb-card>
+<div class="steppers-container row">
+  <div class="col-sm-12 col-md-12">
+    <nb-card>
+      <nb-card-header>{{ title }}</nb-card-header>
+      <nb-card-body>
+        <nb-stepper #stepper>
+          <nb-step [stepControl]="firstForm" label="Account info">
+            <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()" class="step-container">
+              <div class="form-group row">
+                <label for="iin" class="label col-sm-3 col-form-label">IIN</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter IIN" id="iin" class="form-control"
+                         formControlName="iin"
+                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="password" class="label col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter password" id="password" class="form-control"
+                         formControlName="password"
+                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                </div>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <label for="lastname" class="label col-sm-3 col-form-label">Lastname</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter lastname" id="lastname" class="form-control"
+                         formControlName="lastname"
+                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="name" class="label col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter name" id="name" class="form-control"
+                         formControlName="name"
+                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="middlename" class="label col-sm-3 col-form-label">Middlename</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter middlename" id="middlename" class="form-control"
+                         formControlName="middlename"
+                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="previousLastname" class="label col-sm-3 col-form-label">Previous Lastname</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth type="text" placeholder="Enter previousLastname" id="previousLastname" class="form-control"
+                         formControlName="previousLastname"
+                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                </div>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <label for="birthDate" class="label col-sm-3 col-form-label">Birth Date</label>
+                <div class="col-sm-9">
+                  <input nbInput fullWidth
+                         placeholder="Enter birth date" formControlName="birthDate" id="birthDate"
+                         [nbDatepicker]="formpicker">
+                  <nb-datepicker #formpicker></nb-datepicker>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="previousLastname" class="label col-sm-3 col-form-label">Gender</label>
+                <div class="col-sm-9">
+                  <nb-select fullWidth placeholder="Enter gender" id="gender" formControlName="gender">
+                    <nb-option value="MALE">Male</nb-option>
+                    <nb-option value="FEMALE">Female</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="maritalStatus" class="label col-sm-3 col-form-label">Marital Status</label>
+                <div class="col-sm-9">
+                  <nb-select fullWidth placeholder="Enter marital status" id="maritalStatus" formControlName="maritalStatus">
+                    <nb-option value="SINGLE">Single</nb-option>
+                    <nb-option value="MARRIED">Married</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <button nbButton nbStepperNext>next</button>
+            </form>
+          </nb-step>
+          <nb-step [stepControl]="secondForm" label="Contacts info">
+            <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container">
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </form>
+          </nb-step>
+          <nb-step [stepControl]="thirdForm" label="Additional info">
+            <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
+              <button nbButton nbStepperPrevious>prev</button>
+              <button nbButton nbStepperNext>next</button>
+            </form>
+          </nb-step>
+        </nb-stepper>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="buttons-row">
+          <button nbButton hero status="danger" (click)="dismiss()">Close</button>
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

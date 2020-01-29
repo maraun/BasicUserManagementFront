@@ -5,7 +5,14 @@ import { UsersRoutingModule } from './users-routing.module';
 import {ButtonViewComponent, ListComponent} from './list/list.component';
 import { RolesComponent } from './roles/roles.component';
 import { StructureComponent } from './structure/structure.component';
-import {NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbStepperModule} from '@nebular/theme';
+import {
+  NbButtonModule,
+  NbCardModule, NbDatepickerModule,
+  NbDialogModule,
+  NbIconModule,
+  NbInputModule, NbSelectModule,
+  NbStepperModule
+} from '@nebular/theme';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import { ModalComponent } from './list/modal/modal.component';
 import {ReactiveFormsModule} from "@angular/forms";
@@ -23,6 +30,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     NbDialogModule.forChild(),
     NbStepperModule,
     ReactiveFormsModule,
+    NbInputModule,
+    NbDatepickerModule,
+    NbSelectModule,
   ],
   entryComponents: [ButtonViewComponent, ModalComponent],
 })

@@ -13,11 +13,6 @@ export class ModalComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  fourthForm: FormGroup;
-  fifthForm: FormGroup;
-  sixthForm: FormGroup;
-  seventhForm: FormGroup;
-  eighthForm: FormGroup;
   constructor(protected ref: NbDialogRef<ModalComponent>, private fb: FormBuilder) { }
 
   dismiss() {
@@ -26,7 +21,15 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.firstForm = this.fb.group({
-      firstCtrl: ['', Validators.required],
+      iin: ['', Validators.required],
+      password: ['', Validators.required],
+      lastname: ['', Validators.required],
+      name: ['', Validators.required],
+      middlename: [''],
+      previousLastname: [''],
+      birthDate: ['', Validators.required],
+      gender: ['', Validators.required],
+      maritalStatus: ['', Validators.required],
     });
 
     this.secondForm = this.fb.group({
@@ -37,25 +40,6 @@ export class ModalComponent implements OnInit {
       thirdCtrl: ['', Validators.required],
     });
 
-    this.fourthForm = this.fb.group({
-      fourthCtrl: ['', Validators.required],
-    });
-
-    this.fifthForm = this.fb.group({
-      fifthCtrl: ['', Validators.required],
-    });
-
-    this.sixthForm = this.fb.group({
-      sixthCtrl: ['', Validators.required],
-    });
-
-    this.seventhForm = this.fb.group({
-      seventhCtrl: ['', Validators.required],
-    });
-
-    this.eighthForm = this.fb.group({
-      eighthCtrl: ['', Validators.required],
-    });
   }
 
   onFirstSubmit() {
@@ -70,23 +54,4 @@ export class ModalComponent implements OnInit {
     this.thirdForm.markAsDirty();
   }
 
-  onFourthSubmit() {
-    this.fourthForm.markAsDirty();
-  }
-
-  onFifthSubmit() {
-    this.fifthForm.markAsDirty();
-  }
-
-  onSixthSubmit() {
-    this.sixthForm.markAsDirty();
-  }
-
-  onSeventhSubmit() {
-    this.seventhForm.markAsDirty();
-  }
-
-  onEighthSubmit() {
-    this.eighthForm.markAsDirty();
-  }
 }
