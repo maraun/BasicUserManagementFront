@@ -4,6 +4,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../../@core/models/profile/user';
 import {UserService} from '../../../../@core/services/user.service';
 import {ToastService} from '../../../../@core/services/toast.service';
+import {Additional} from '../../../../@core/models/profile/Additional';
+import {Contacts} from '../../../../@core/models/profile/Contacts';
+import {Profile} from '../../../../@core/models/profile/profile';
 
 @Component({
   selector: 'ngx-modal',
@@ -17,6 +20,10 @@ export class ModalComponent implements OnInit {
   secondForm: FormGroup;
   thirdForm: FormGroup;
   user: User = null;
+  user2: User = null;
+  profile2: Profile = null;
+  contacts2: Contacts = null;
+  additional2: Additional = null;
   loading = false;
   userExist = false;
 
@@ -46,12 +53,14 @@ export class ModalComponent implements OnInit {
 
   onThirdSubmit() {
     this.thirdForm.markAsDirty();
+    this.submitData();
     if (this.id === 0) {
       this.toast.success('User created', 'person-done-outline');
     } else {
       this.toast.success('Changes saved', 'cloud-upload-outline');
     }
   }
+
   initForm() {
     this.firstForm = new FormGroup({
       iin: new FormControl(),
@@ -114,8 +123,45 @@ export class ModalComponent implements OnInit {
           });
         },
         err => {
-          this.toast.error('Data not load', 'cloud-download-outline');
+          this.toast.error('Data not loaded', 'cloud-download-outline');
         });
     }
+  }
+
+  submitData() {
+    this.profile2 = {
+      id: (this.id === 0) ? 0 : this.user.profile.id,
+      firstname: this.firstForm.value.firstname,
+      lastname: this.firstForm.value.lastname,
+      middlename: this.firstForm.value.middlename,
+      previouslastname: this.firstForm.value.previousLastname,
+      iin: this.firstForm.value.iin,
+      birthdate: this.firstForm.value.birthDate,
+      nationality: this.secondForm.value.nationality,
+      citizenship: this.secondForm.value.citizenship,
+      gender: this.secondForm.value.gender,
+      maritalStatus: this.secondForm.value.maritalStatus,
+      registrationPlace: this.secondForm.value.registrationPlace,
+      livingPlace: this.secondForm.value.livingPlace,
+    };
+    this.contacts2 = {
+      id: (this.id === 0) ? 0 : this.user.contacts.id,
+      homephone: this.secondForm.value.homePhone,
+      mobilephone: this.secondForm.value.mobilePhone,
+      workphone: this.secondForm.value.mobilePhone,
+      email: this.secondForm.value.email,
+    };
+    this.additional2 = {
+      id: (this.id === 0) ? 0 : this.user.additional.id,
+      information: this.thirdForm.value.additional,
+    };
+    this.user2 = {
+      id: (this.id === 0) ? 0 : this.id,
+      username: this.firstForm.value.iin,
+      roles: undefined,
+      profile: this.profile2,
+      contacts: this.contacts2,
+      additional: this.additional2,
+    };
   }
 }

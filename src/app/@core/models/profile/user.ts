@@ -6,11 +6,11 @@ import {Contacts} from './Contacts';
 import {Additional} from './Additional';
 
 export class User {
-  id?: number;
+  id: number;
   username: string;
   password?: string;
-  roles?: Set<Role>;
-  profile?: Profile;
+  roles: Set<Role>;
+  profile: Profile;
   documents?: Set<Document>;
   positions?: Set<Position>;
   contacts: Contacts;

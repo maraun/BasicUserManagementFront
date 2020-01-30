@@ -17,6 +17,6 @@ export class Profile {
   maritalStatus: MaritalStatus;
   registrationPlace: string;
   livingPlace: string;
-  photoname: string;
+  photoname?: string;
 
 }
