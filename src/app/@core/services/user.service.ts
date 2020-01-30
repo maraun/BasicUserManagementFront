@@ -26,4 +26,7 @@ export class UserService {
   public update(user: User): Observable<User> {
     return this.http.put<User>(this.apiUrl, user);
   }
+  public save(user: User): Observable<User> {
+    return this.http.post<User>(this.apiUrl, user);
+  }
 }

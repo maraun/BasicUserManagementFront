@@ -63,8 +63,10 @@ export class ModalComponent implements OnInit {
     this.thirdForm.markAsDirty();
     this.submitData();
     if (this.id === 0) {
-
-      this.toast.success('User created', 'person-done-outline');
+      this.userService.save(this.user2).subscribe((perf) => {
+          this.user = perf;
+          this.toast.success('User added', 'person-done-outline'); },
+        err => {this.toast.error('User can not be created', 'cloud-download-outline'); });
     } else {
       this.userService.update(this.user2).subscribe((perf) => {
           this.user = perf;
@@ -185,7 +187,7 @@ export class ModalComponent implements OnInit {
       information: this.thirdForm.value.additional,
     };
     this.user2 = {
-      id: (this.id === 0) ? 0 : this.id,
+      id: (this.id === 0) ? null : this.id,
       username: this.firstForm.value.iin,
       password: this.firstForm.value.password,
       roles: this.user.roles,
