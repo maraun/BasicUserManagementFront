@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../@core/models/profile/user';
 import {UserService} from '../../@core/services/user.service';
-import {NbIconConfig, NbToastrService} from '@nebular/theme';
+import {ToastService} from '../../@core/services/toast.service';
 
 @Component({
   selector: 'ngx-profile',
@@ -14,17 +14,13 @@ export class ProfileComponent implements OnInit {
   loading = false;
 
   constructor(private userService: UserService,
-              private toastrService: NbToastrService) { }
+              private toast: ToastService) { }
 
   ngOnInit() {
     this.loading = true;
     this.userService.current().subscribe((perf) => {
       this.user = perf;
       this.loading = false; },
-        err => {this.showErrorToast(); });
-  }
-  showErrorToast() {
-    const iconConfig: NbIconConfig = { icon: 'cloud-download-outline', pack: 'eva', status: 'danger'};
-    this.toastrService.show('Data loading error', `Error`, iconConfig);
+        err => {this.toast.error('Data not loaded', 'cloud-download-outline'); });
   }
 }
