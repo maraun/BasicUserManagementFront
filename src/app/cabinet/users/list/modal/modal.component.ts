@@ -7,6 +7,10 @@ import {ToastService} from '../../../../@core/services/toast.service';
 import {Additional} from '../../../../@core/models/profile/Additional';
 import {Contacts} from '../../../../@core/models/profile/Contacts';
 import {Profile} from '../../../../@core/models/profile/profile';
+import {Nationality} from '../../../../@core/models/profile/Nationality';
+import {Citizenship} from '../../../../@core/models/profile/Citizenship';
+import {MaritalStatus} from '../../../../@core/models/profile/MaritalStatus';
+import {Gender} from '../../../../@core/models/profile/Gender';
 
 @Component({
   selector: 'ngx-modal',
@@ -24,6 +28,10 @@ export class ModalComponent implements OnInit {
   profile2: Profile = null;
   contacts2: Contacts = null;
   additional2: Additional = null;
+  nationality2: Nationality = null;
+  citizenship2: Citizenship = null;
+  maritalStatus2: MaritalStatus = null;
+  gender2: Gender = null;
   loading = false;
   userExist = false;
 
@@ -55,9 +63,14 @@ export class ModalComponent implements OnInit {
     this.thirdForm.markAsDirty();
     this.submitData();
     if (this.id === 0) {
+
       this.toast.success('User created', 'person-done-outline');
     } else {
-      this.toast.success('Changes saved', 'cloud-upload-outline');
+      this.userService.update(this.user2).subscribe((perf) => {
+          this.user = perf;
+          this.toast.success('Changes saved', 'cloud-upload-outline'); },
+        err => {this.toast.error('Changes can not be saved', 'cloud-download-outline'); });
+
     }
   }
 
@@ -129,6 +142,22 @@ export class ModalComponent implements OnInit {
   }
 
   submitData() {
+    this.nationality2 = {
+      id: (this.id === 0) ? 0 : this.user.profile.nationality.id,
+      name: this.secondForm.value.nationality,
+    };
+    this.citizenship2 = {
+      id: (this.id === 0) ? 0 : this.user.profile.citizenship.id,
+      name: this.secondForm.value.citizenship,
+    };
+    this.gender2 = {
+      id: (this.id === 0) ? 0 : this.user.profile.gender.id,
+      name: this.secondForm.value.gender,
+    };
+    this.maritalStatus2 = {
+      id: (this.id === 0) ? 0 : this.user.profile.maritalStatus.id,
+      name: this.secondForm.value.maritalStatus,
+    };
     this.profile2 = {
       id: (this.id === 0) ? 0 : this.user.profile.id,
       firstname: this.firstForm.value.firstname,
@@ -137,10 +166,10 @@ export class ModalComponent implements OnInit {
       previouslastname: this.firstForm.value.previousLastname,
       iin: this.firstForm.value.iin,
       birthdate: this.firstForm.value.birthDate,
-      nationality: this.secondForm.value.nationality,
-      citizenship: this.secondForm.value.citizenship,
-      gender: this.secondForm.value.gender,
-      maritalStatus: this.secondForm.value.maritalStatus,
+      nationality: this.nationality2,
+      citizenship: this.citizenship2,
+      gender: this.gender2,
+      maritalStatus: this.maritalStatus2,
       registrationPlace: this.secondForm.value.registrationPlace,
       livingPlace: this.secondForm.value.livingPlace,
     };
@@ -158,7 +187,10 @@ export class ModalComponent implements OnInit {
     this.user2 = {
       id: (this.id === 0) ? 0 : this.id,
       username: this.firstForm.value.iin,
-      roles: undefined,
+      password: this.firstForm.value.password,
+      roles: this.user.roles,
+      positions: this.user.positions,
+      documents: this.user.documents,
       profile: this.profile2,
       contacts: this.contacts2,
       additional: this.additional2,

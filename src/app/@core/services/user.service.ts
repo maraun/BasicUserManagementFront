@@ -23,4 +23,7 @@ export class UserService {
    public findAll(): Observable<Profile[]> {
     return this.http.get<Profile[]>(this.apiUrl2);
   }
+  public update(user: User): Observable<User> {
+    return this.http.put<User>(this.apiUrl, user);
+  }
 }
