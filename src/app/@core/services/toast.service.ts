@@ -12,12 +12,12 @@ export class ToastService {
   }
 
   error(text, icon) {
-    const iconConfig: NbIconConfig = {icon: icon, pack: 'eva', status: 'success'};
+    const iconConfig: NbIconConfig = {icon: icon, pack: 'eva', status: 'danger'};
     this.toastrService.show(text, `Error`, iconConfig);
   }
 
   warning(text, icon) {
-    const iconConfig: NbIconConfig = {icon: icon, pack: 'eva', status: 'success'};
+    const iconConfig: NbIconConfig = {icon: icon, pack: 'eva', status: 'warning'};
     this.toastrService.show(text, `Warning`, iconConfig);
   }
 }
