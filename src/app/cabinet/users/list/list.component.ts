@@ -169,9 +169,7 @@ export class ListComponent implements OnInit {
 
   delete(id) {
     if (confirm('Delete user?')) {
-      this.userService.delete(id).subscribe(perf => {
-        console.log('deleted');
-      });
+      this.userService.delete(id).subscribe(perf => {});
     } else {
       return false;
     }
