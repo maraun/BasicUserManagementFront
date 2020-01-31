@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     this.userService.current().subscribe((perf) => {
       this.user = perf;
+      console.log(this.user);
       this.loading = false; },
         err => {this.toast.error('Data not loaded', 'cloud-download-outline'); });
   }

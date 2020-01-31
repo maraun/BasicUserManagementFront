@@ -13,7 +13,7 @@ import {MaritalStatus} from '../../../../@core/models/profile/MaritalStatus';
 import {Gender} from '../../../../@core/models/profile/Gender';
 import {Position} from '../../../../@core/models/profile/Position';
 import {Document} from '../../../../@core/models/profile/Document';
-import {Role} from "../../../../@core/models/profile/role";
+import {Role} from '../../../../@core/models/profile/role';
 
 @Component({
   selector: 'ngx-modal',
@@ -203,6 +203,5 @@ export class ModalComponent implements OnInit {
       contacts: this.contacts2,
       additional: this.additional2,
     };
-    console.log(this.user2);
   }
 }
