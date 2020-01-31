@@ -29,4 +29,7 @@ export class UserService {
   public save(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
+  public delete(id: number) {
+    return this.http.delete(`${this.	apiUrl}/${id}`);
+  }
 }

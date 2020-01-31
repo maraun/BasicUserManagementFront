@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
-import {ButtonViewComponent, ListComponent} from './list/list.component';
+import {ButtonDeleteComponent, ButtonViewComponent, ListComponent} from './list/list.component';
 import { RolesComponent } from './roles/roles.component';
 import { StructureComponent } from './structure/structure.component';
 import {
@@ -11,15 +11,21 @@ import {
   NbDialogModule,
   NbIconModule,
   NbInputModule, NbSelectModule,
-  NbStepperModule
+  NbStepperModule,
 } from '@nebular/theme';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import { ModalComponent } from './list/modal/modal.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ListComponent, RolesComponent, StructureComponent, ButtonViewComponent, ModalComponent],
+  declarations: [
+    ListComponent,
+    RolesComponent,
+    StructureComponent,
+    ButtonViewComponent,
+    ModalComponent,
+    ButtonDeleteComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -34,6 +40,6 @@ import {ReactiveFormsModule} from "@angular/forms";
     NbDatepickerModule,
     NbSelectModule,
   ],
-  entryComponents: [ButtonViewComponent, ModalComponent],
+  entryComponents: [ButtonViewComponent, ModalComponent, ButtonDeleteComponent],
 })
 export class UsersModule { }
