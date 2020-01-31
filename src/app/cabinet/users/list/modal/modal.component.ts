@@ -11,6 +11,9 @@ import {Nationality} from '../../../../@core/models/profile/Nationality';
 import {Citizenship} from '../../../../@core/models/profile/Citizenship';
 import {MaritalStatus} from '../../../../@core/models/profile/MaritalStatus';
 import {Gender} from '../../../../@core/models/profile/Gender';
+import {Position} from '../../../../@core/models/profile/Position';
+import {Document} from '../../../../@core/models/profile/Document';
+import {Role} from "../../../../@core/models/profile/role";
 
 @Component({
   selector: 'ngx-modal',
@@ -32,6 +35,9 @@ export class ModalComponent implements OnInit {
   citizenship2: Citizenship = null;
   maritalStatus2: MaritalStatus = null;
   gender2: Gender = null;
+  positions2: Set<Position> = new Set<Position>();
+  documents2: Set<Document> = new Set<Document>();
+  roles2: Set<Role> = new Set<Role>();
   loading = false;
   userExist = false;
 
@@ -145,23 +151,23 @@ export class ModalComponent implements OnInit {
 
   submitData() {
     this.nationality2 = {
-      id: (this.id === 0) ? 0 : this.user.profile.nationality.id,
+      id: (this.id === 0) ? null : this.user.profile.nationality.id,
       name: this.secondForm.value.nationality,
     };
     this.citizenship2 = {
-      id: (this.id === 0) ? 0 : this.user.profile.citizenship.id,
+      id: (this.id === 0) ? null : this.user.profile.citizenship.id,
       name: this.secondForm.value.citizenship,
     };
     this.gender2 = {
-      id: (this.id === 0) ? 0 : this.user.profile.gender.id,
-      name: this.secondForm.value.gender,
+      id: (this.id === 0) ? null : this.user.profile.gender.id,
+      name: this.firstForm.value.gender,
     };
     this.maritalStatus2 = {
-      id: (this.id === 0) ? 0 : this.user.profile.maritalStatus.id,
-      name: this.secondForm.value.maritalStatus,
+      id: (this.id === 0) ? null : this.user.profile.maritalStatus.id,
+      name: this.firstForm.value.maritalStatus,
     };
     this.profile2 = {
-      id: (this.id === 0) ? 0 : this.user.profile.id,
+      id: (this.id === 0) ? null : this.user.profile.id,
       firstname: this.firstForm.value.firstname,
       lastname: this.firstForm.value.lastname,
       middlename: this.firstForm.value.middlename,
@@ -176,26 +182,27 @@ export class ModalComponent implements OnInit {
       livingPlace: this.secondForm.value.livingPlace,
     };
     this.contacts2 = {
-      id: (this.id === 0) ? 0 : this.user.contacts.id,
+      id: (this.id === 0) ? null : this.user.contacts.id,
       homephone: this.secondForm.value.homePhone,
       mobilephone: this.secondForm.value.mobilePhone,
       workphone: this.secondForm.value.mobilePhone,
       email: this.secondForm.value.email,
     };
     this.additional2 = {
-      id: (this.id === 0) ? 0 : this.user.additional.id,
+      id: (this.id === 0) ? null : this.user.additional.id,
       information: this.thirdForm.value.additional,
     };
     this.user2 = {
       id: (this.id === 0) ? null : this.id,
       username: this.firstForm.value.iin,
       password: this.firstForm.value.password,
-      roles: this.user.roles,
-      positions: this.user.positions,
-      documents: this.user.documents,
+      roles: (this.id === 0) ? null : this.user.roles,
+      positions: (this.id === 0) ? null : this.user.positions,
+      documents: (this.id === 0) ? null : this.user.documents,
       profile: this.profile2,
       contacts: this.contacts2,
       additional: this.additional2,
     };
+    console.log(this.user2);
   }
 }
