@@ -74,8 +74,8 @@
                 <label for="previousLastname" class="label col-sm-3 col-form-label">Gender</label>
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter gender" id="gender" formControlName="gender">
-                    <nb-option value="MALE">Male</nb-option>
-                    <nb-option value="FEMALE">Female</nb-option>
+                    <nb-option *ngFor="let gender of genders"
+                               [value]="gender.id">{{gender.name}}</nb-option>
                   </nb-select>
                 </div>
               </div>
@@ -84,8 +84,8 @@
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter marital status" id="maritalStatus"
                              formControlName="maritalStatus">
-                    <nb-option value="SINGLE">Single</nb-option>
-                    <nb-option value="MARRIED">Married</nb-option>
+                    <nb-option *ngFor="let maritalStatus of maritalStatuses"
+                               [value]="maritalStatus.id">{{maritalStatus.name}}</nb-option>
                   </nb-select>
                 </div>
               </div>
@@ -98,9 +98,8 @@
                 <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality">
-                    <nb-option value="KAZAKH">Kazakh</nb-option>
-                    <nb-option value="RUSSIAN">Russian</nb-option>
-                    <nb-option value="AMERICAN">American</nb-option>
+                    <nb-option  *ngFor="let nationality of nationalities"
+                                [value]="nationality.id">{{nationality.name}}</nb-option>
                   </nb-select>
                 </div>
               </div>
@@ -108,9 +107,8 @@
                 <label for="citizenship" class="label col-sm-3 col-form-label">Citizenship</label>
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter citizenship" id="citizenship" formControlName="citizenship">
-                    <nb-option value="KAZAKHSTAN">Kazakhstan</nb-option>
-                    <nb-option value="RUSSIANFEDERATION">Russian Federation</nb-option>
-                    <nb-option value="USA">USA</nb-option>
+                    <nb-option  *ngFor="let citizenship of citizenships"
+                                [value]="citizenship.id">{{citizenship.name}}</nb-option>
                   </nb-select>
                 </div>
               </div>

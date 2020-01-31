@@ -14,6 +14,7 @@ import {Gender} from '../../../../@core/models/profile/Gender';
 import {Position} from '../../../../@core/models/profile/Position';
 import {Document} from '../../../../@core/models/profile/Document';
 import {Role} from '../../../../@core/models/profile/role';
+import {XprofileService} from '../../../../@core/services/xprofile.service';
 
 @Component({
   selector: 'ngx-modal',
@@ -31,10 +32,10 @@ export class ModalComponent implements OnInit {
   profile2: Profile = null;
   contacts2: Contacts = null;
   additional2: Additional = null;
-  nationality2: Nationality = null;
-  citizenship2: Citizenship = null;
-  maritalStatus2: MaritalStatus = null;
-  gender2: Gender = null;
+  nationalities: Nationality[] = [];
+  citizenships: Citizenship[] = [];
+  maritalStatuses: MaritalStatus[] = [];
+  genders: Gender[] = [];
   positions2: Set<Position> = new Set<Position>();
   documents2: Set<Document> = new Set<Document>();
   roles2: Set<Role> = new Set<Role>();
@@ -44,7 +45,8 @@ export class ModalComponent implements OnInit {
   constructor(protected ref: NbDialogRef<ModalComponent>,
               private fb: FormBuilder,
               private toast: ToastService,
-              private userService: UserService) {
+              private userService: UserService,
+              private xProfileService: XprofileService) {
   }
 
   dismiss() {
@@ -52,6 +54,7 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadXprofile();
     this.initForm();
     this.loading = true;
     this.loadData();
@@ -71,13 +74,21 @@ export class ModalComponent implements OnInit {
     if (this.id === 0) {
       this.userService.save(this.user2).subscribe((perf) => {
           this.user = perf;
-          this.toast.success('User added', 'person-done-outline'); },
-        err => {this.toast.error('User can not be created', 'cloud-download-outline'); });
+          this.dismiss();
+          this.toast.success('User added', 'person-done-outline');
+        },
+        err => {
+          this.toast.error('User can not be created', 'cloud-download-outline');
+        });
     } else {
       this.userService.update(this.user2).subscribe((perf) => {
           this.user = perf;
-          this.toast.success('Changes saved', 'cloud-upload-outline'); },
-        err => {this.toast.error('Changes can not be saved', 'cloud-download-outline'); });
+          this.dismiss();
+          this.toast.success('Changes saved', 'cloud-upload-outline');
+        },
+        err => {
+          this.toast.error('Changes can not be saved', 'cloud-download-outline');
+        });
 
     }
   }
@@ -125,12 +136,12 @@ export class ModalComponent implements OnInit {
             middlename: [this.user.profile.middlename],
             previousLastname: [this.user.profile.previouslastname],
             birthDate: [this.user.profile.birthdate, Validators.required],
-            gender: [this.user.profile.gender.name, Validators.required],
-            maritalStatus: [this.user.profile.maritalStatus.name, Validators.required],
+            gender: [this.user.profile.gender.id, Validators.required],
+            maritalStatus: [this.user.profile.maritalStatus.id, Validators.required],
           });
           this.secondForm = this.fb.group({
-            nationality: [this.user.profile.nationality.name, Validators.required],
-            citizenship: [this.user.profile.citizenship.name, Validators.required],
+            nationality: [this.user.profile.nationality.id, Validators.required],
+            citizenship: [this.user.profile.citizenship.id, Validators.required],
             livingPlace: [this.user.profile.livingPlace, Validators.required],
             registrationPlace: [this.user.profile.registrationPlace, Validators.required],
             email: [this.user.contacts.email, Validators.required],
@@ -150,22 +161,6 @@ export class ModalComponent implements OnInit {
   }
 
   submitData() {
-    this.nationality2 = {
-      id: (this.id === 0) ? null : this.user.profile.nationality.id,
-      name: this.secondForm.value.nationality,
-    };
-    this.citizenship2 = {
-      id: (this.id === 0) ? null : this.user.profile.citizenship.id,
-      name: this.secondForm.value.citizenship,
-    };
-    this.gender2 = {
-      id: (this.id === 0) ? null : this.user.profile.gender.id,
-      name: this.firstForm.value.gender,
-    };
-    this.maritalStatus2 = {
-      id: (this.id === 0) ? null : this.user.profile.maritalStatus.id,
-      name: this.firstForm.value.maritalStatus,
-    };
     this.profile2 = {
       id: (this.id === 0) ? null : this.user.profile.id,
       firstname: this.firstForm.value.firstname,
@@ -174,10 +169,14 @@ export class ModalComponent implements OnInit {
       previouslastname: this.firstForm.value.previousLastname,
       iin: this.firstForm.value.iin,
       birthdate: this.firstForm.value.birthDate,
-      nationality: this.nationality2,
-      citizenship: this.citizenship2,
-      gender: this.gender2,
-      maritalStatus: this.maritalStatus2,
+      nationality: this.nationalities.find(
+        item => item.id === this.secondForm.value.nationality),
+      citizenship: this.citizenships.find(
+        item => item.id === this.secondForm.value.citizenship),
+      gender: this.genders.find(
+        item => item.id === this.firstForm.value.gender),
+      maritalStatus: this.maritalStatuses.find(
+        item => item.id === this.firstForm.value.maritalStatus),
       registrationPlace: this.secondForm.value.registrationPlace,
       livingPlace: this.secondForm.value.livingPlace,
     };
@@ -203,5 +202,20 @@ export class ModalComponent implements OnInit {
       contacts: this.contacts2,
       additional: this.additional2,
     };
+  }
+
+  loadXprofile() {
+    this.xProfileService.getNationalities().subscribe(data => {
+      this.nationalities = data;
+    });
+    this.xProfileService.getCitizenships().subscribe(data => {
+      this.citizenships = data;
+    });
+    this.xProfileService.getGenders().subscribe(data => {
+      this.genders = data;
+    });
+    this.xProfileService.getMaritalStatuses().subscribe(data => {
+      this.maritalStatuses = data;
+    });
   }
 }
