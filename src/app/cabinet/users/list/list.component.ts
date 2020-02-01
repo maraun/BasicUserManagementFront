@@ -5,6 +5,7 @@ import {User} from '../../../@core/models/profile/user';
 import {Profile} from '../../../@core/models/profile/profile';
 import {NbDialogService} from '@nebular/theme';
 import {ModalComponent} from './modal/modal.component';
+import {ToastService} from '../../../@core/services/toast.service';
 
 @Component({
   selector: 'ngx-button-view',
@@ -145,7 +146,9 @@ export class ListComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
   users: Profile[] = [];
 
-  constructor(private userService: UserService, private dialogService: NbDialogService) {
+  constructor(private userService: UserService,
+              private dialogService: NbDialogService,
+              private toast: ToastService) {
   }
 
   ngOnInit() {
@@ -156,7 +159,10 @@ export class ListComponent implements OnInit {
     this.userService.findAll().subscribe(data => {
       this.users = data;
       this.source.load(this.users);
-    });
+    },
+      err => {
+        this.toast.error('Data not loaded', 'cloud-download-outline');
+      });
   }
 
   onDeleteConfirm(event): void {

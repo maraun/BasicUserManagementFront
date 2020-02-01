@@ -1,4 +1,5 @@
 @import '../../../../@theme/styles/themes';
+
 @include nb-install-component() {
   nb-card {
     max-width: 800px;
@@ -7,11 +8,21 @@
   .buttons-row {
     margin: -0.5rem;
   }
-
+  .form-control-danger {
+  border-color: red;
+  }
+  .error-message {
+    color: red;
+    font-size: xx-small;
+  }
+  .required-star {
+    color: chocolate;
+  }
   button[nbButton] {
     margin: 0.5rem;
   }
 }
+
 :host ::ng-deep nb-stepper .step-content {
   text-align: center;
 
@@ -20,3 +31,4 @@
     margin: 0.5rem;
   }
 }
+

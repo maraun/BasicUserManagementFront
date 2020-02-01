@@ -13,16 +13,20 @@
                 <label for="iin" class="label col-sm-3 col-form-label">IIN</label>
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter IIN" id="iin" class="form-control"
-                         formControlName="iin"
-                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                         formControlName="iin" [minlength]="12" [maxlength]="12" required
+                         [ngClass]="{'form-control-danger': firstForm.controls.iin.invalid && firstForm.controls.iin.touched}">
+                  <span class="error-message" *ngIf="(firstForm.controls.iin.errors?.required || firstForm.controls.iin.errors?.minlength) && firstForm.controls.iin.touched">
+                    IIN is required!
+                  </span>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="password" class="label col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="password" placeholder="Enter password" id="password" class="form-control"
+                  <input nbInput fullWidth type="password" placeholder="Enter password" id="password"
+                         class="form-control"
                          formControlName="password"
-                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                         [ngClass]="{'form-control-': firstForm.invalid && firstForm.touched}">
                 </div>
               </div>
               <hr>
@@ -30,16 +34,16 @@
                 <label for="lastname" class="label col-sm-3 col-form-label">Lastname</label>
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter lastname" id="lastname" class="form-control"
-                         formControlName="lastname"
-                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                         formControlName="lastname" required
+                         [ngClass]="{'form-control-danger': firstForm.controls.lastname.invalid && firstForm.controls.lastname.touched}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="firstname" class="label col-sm-3 col-form-label">Firstame</label>
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter name" id="firstname" class="form-control"
-                         formControlName="firstname"
-                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                         formControlName="firstname" required
+                         [ngClass]="{'form-control-danger': firstForm.controls.firstname.invalid && firstForm.controls.firstname.touched}">
                 </div>
               </div>
               <div class="form-group row">
@@ -47,8 +51,7 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter middlename" id="middlename"
                          class="form-control"
-                         formControlName="middlename"
-                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                         formControlName="middlename">
                 </div>
               </div>
               <div class="form-group row">
@@ -56,8 +59,7 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter previousLastname" id="previousLastname"
                          class="form-control"
-                         formControlName="previousLastname"
-                         [ngClass]="{'form-control-danger': firstForm.invalid && (firstForm.dirty || firstForm.touched)}">
+                         formControlName="previousLastname">
                 </div>
               </div>
               <hr>
@@ -66,7 +68,8 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth
                          placeholder="Enter birth date" formControlName="birthDate" id="birthDate"
-                         [nbDatepicker]="formpicker">
+                         [nbDatepicker]="formpicker" required
+                         [ngClass]="{'form-control-danger': firstForm.controls.birthDate.invalid && firstForm.controls.birthDate.touched}">
                   <nb-datepicker #formpicker></nb-datepicker>
                 </div>
               </div>
@@ -89,7 +92,7 @@
                   </nb-select>
                 </div>
               </div>
-              <button nbButton nbStepperNext>next</button>
+              <button nbButton nbStepperNext [disabled]="!firstForm.valid">next</button>
             </form>
           </nb-step>
           <nb-step [stepControl]="secondForm" label="Contacts info">
@@ -98,8 +101,8 @@
                 <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality">
-                    <nb-option  *ngFor="let nationality of nationalities"
-                                [value]="nationality.id">{{nationality.name}}</nb-option>
+                    <nb-option *ngFor="let nationality of nationalities"
+                               [value]="nationality.id">{{nationality.name}}</nb-option>
                   </nb-select>
                 </div>
               </div>
@@ -107,8 +110,8 @@
                 <label for="citizenship" class="label col-sm-3 col-form-label">Citizenship</label>
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter citizenship" id="citizenship" formControlName="citizenship">
-                    <nb-option  *ngFor="let citizenship of citizenships"
-                                [value]="citizenship.id">{{citizenship.name}}</nb-option>
+                    <nb-option *ngFor="let citizenship of citizenships"
+                               [value]="citizenship.id">{{citizenship.name}}</nb-option>
                   </nb-select>
                 </div>
               </div>
