@@ -15,7 +15,8 @@
                   <input nbInput fullWidth type="text" placeholder="Enter IIN" id="iin" class="form-control"
                          formControlName="iin" [minlength]="12" [maxlength]="12" required
                          [ngClass]="{'form-control-danger': firstForm.controls.iin.invalid && firstForm.controls.iin.touched}">
-                  <span class="error-message" *ngIf="(firstForm.controls.iin.errors?.required || firstForm.controls.iin.errors?.minlength) && firstForm.controls.iin.touched">
+                  <span class="error-message"
+                        *ngIf="(firstForm.controls.iin.errors?.required || firstForm.controls.iin.errors?.minlength) && firstForm.controls.iin.touched">
                     IIN is required!
                   </span>
                 </div>
@@ -101,7 +102,7 @@
                 <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
                 <div class="col-sm-9">
                   <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality"
-                  required>
+                             required>
                     <nb-option *ngFor="let nationality of nationalities"
                                [value]="nationality.id">{{nationality.name}}</nb-option>
                   </nb-select>
@@ -173,12 +174,30 @@
           <nb-step [stepControl]="thirdForm" label="Additional info">
             <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
               <div class="form-group row">
+<!--                <label for="positions" class="label col-sm-3 col-form-label">Positions</label>-->
+                <div class="col-sm-9">
+
+                  <div *ngFor="let position of thirdForm.controls.positions.value; let i = index"
+                       [formGroup]="position">
+
+                    form No : {{i}}
+                    <div>
+                      id <input formControlName="id" [value]="position.id">
+                    </div>
+
+                    <div>
+                      position <input formControlName="position" [value]="position.position">
+                    </div>
+                    <button (click)="deleteAddressGroup(i)">Delete - {{i}}</button>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
                 <label for="additional" class="label col-sm-3 col-form-label">Additional information</label>
                 <div class="col-sm-9">
                   <textarea fullWidth type="text" placeholder="Enter additional information" id="additional"
                             class="form-control"
-                            formControlName="additional"
-                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"></textarea>
+                            formControlName="additional"></textarea>
                 </div>
               </div>
               <button nbButton nbStepperPrevious>prev</button>

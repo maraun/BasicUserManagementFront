@@ -12,7 +12,7 @@ export class User {
   roles: Set<Role>;
   profile: Profile;
   documents?: Set<Document>;
-  positions?: Set<Position>;
+  positions?: Position[];
   contacts: Contacts;
   additional: Additional;
 }

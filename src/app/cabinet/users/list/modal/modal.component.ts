@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NbDialogRef, NbIconConfig, NbToastrService} from '@nebular/theme';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../../@core/models/profile/user';
 import {UserService} from '../../../../@core/services/user.service';
 import {ToastService} from '../../../../@core/services/toast.service';
@@ -117,6 +117,16 @@ export class ModalComponent implements OnInit {
     });
     this.thirdForm = new FormGroup({
       additional: new FormControl(),
+      positions: new FormArray([
+        new FormGroup({
+          id: new FormControl(),
+          starttime: new FormControl(),
+          finishtime: new FormControl(),
+          organization: new FormControl(),
+          position: new FormControl(),
+        }),
+      ]),
+      documents: new FormArray([]),
     });
   }
 
@@ -152,7 +162,9 @@ export class ModalComponent implements OnInit {
 
           this.thirdForm = this.fb.group({
             additional: [this.user.additional.information],
-          });
+            positions: [this.user.positions],
+            documents: [this.user.documents],
+          });console.log(this.thirdForm.controls.positions.value);
         },
         err => {
           this.toast.error('Data not loaded', 'cloud-download-outline');
