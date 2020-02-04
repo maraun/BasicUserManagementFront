@@ -180,6 +180,14 @@
                             formControlName="additional"
                             [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"></textarea>
                 </div>
+                <button (click)="addPosition()">Add</button>
+
+                <div formArrayName="positions" *ngFor="let pos of thirdForm.controls.positions?.value; let i = index">
+                  <ng-container [formGroupName]="i">
+                    <input placeholder="Username" [value]="pos.id" formControlName="id">
+                    <input placeholder="Password" [value]="pos.position" formControlName="position">
+                  </ng-container>
+                </div>
               </div>
               <button nbButton nbStepperPrevious>prev</button>
               <button nbButton nbStepperNext>Confirm</button>
