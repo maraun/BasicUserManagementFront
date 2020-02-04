@@ -15,8 +15,7 @@
                   <input nbInput fullWidth type="text" placeholder="Enter IIN" id="iin" class="form-control"
                          formControlName="iin" [minlength]="12" [maxlength]="12" required
                          [ngClass]="{'form-control-danger': firstForm.controls.iin.invalid && firstForm.controls.iin.touched}">
-                  <span class="error-message"
-                        *ngIf="(firstForm.controls.iin.errors?.required || firstForm.controls.iin.errors?.minlength) && firstForm.controls.iin.touched">
+                  <span class="error-message" *ngIf="(firstForm.controls.iin.errors?.required || firstForm.controls.iin.errors?.minlength) && firstForm.controls.iin.touched">
                     IIN is required!
                   </span>
                 </div>
@@ -101,12 +100,8 @@
               <div class="form-group row">
                 <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
                 <div class="col-sm-9">
-<<<<<<< HEAD
                   <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality"
-                             required>
-=======
-                  <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality">
->>>>>>> parent of 6c59323... Validators finished
+                  required>
                     <nb-option *ngFor="let nationality of nationalities"
                                [value]="nationality.id">{{nationality.name}}</nb-option>
                   </nb-select>
@@ -126,8 +121,7 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter living place" id="livingPlace"
                          class="form-control"
-                         formControlName="livingPlace"
-                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                         formControlName="livingPlace">
                 </div>
               </div>
               <div class="form-group row">
@@ -135,26 +129,25 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter registration place" id="registrationPlace"
                          class="form-control"
-                         formControlName="registrationPlace"
-                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                         formControlName="registrationPlace">
                 </div>
               </div>
               <hr>
               <div class="form-group row">
                 <label for="email" class="label col-sm-3 col-form-label">e-mail</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="text" placeholder="Enter email" id="email" class="form-control"
-                         formControlName="email"
-                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                  <input nbInput fullWidth type="email" placeholder="Enter email" id="email" class="form-control"
+                         formControlName="email" required email pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}"
+                         [ngClass]="{'form-control-danger': secondForm.controls.email.invalid && secondForm.controls.email.touched}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="mobilePhone" class="label col-sm-3 col-form-label">Mobile phone</label>
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter mobile phone" id="mobilePhone"
-                         class="form-control"
+                         class="form-control" required pattern="[0-9]{11}"
                          formControlName="mobilePhone"
-                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                         [ngClass]="{'form-control-danger': secondForm.controls.mobilePhone.invalid && secondForm.controls.mobilePhone.touched}">
                 </div>
               </div>
               <div class="form-group row">
@@ -162,8 +155,7 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter work phone" id="workPhone"
                          class="form-control"
-                         formControlName="workPhone"
-                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                         formControlName="workPhone" pattern="[0-9]{11}">
                 </div>
               </div>
               <div class="form-group row">
@@ -171,41 +163,22 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter home phone" id="homePhone"
                          class="form-control"
-                         formControlName="homePhone"
-                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
+                         formControlName="homePhone">
                 </div>
               </div>
               <button nbButton nbStepperPrevious>prev</button>
-              <button nbButton nbStepperNext>next</button>
+              <button nbButton nbStepperNext [disabled]="!secondForm.valid">next</button>
             </form>
           </nb-step>
           <nb-step [stepControl]="thirdForm" label="Additional info">
             <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container">
               <div class="form-group row">
-<!--                <label for="positions" class="label col-sm-3 col-form-label">Positions</label>-->
-                <div class="col-sm-9">
-
-                  <div *ngFor="let position of thirdForm.controls.positions.value; let i = index"
-                       [formGroup]="position">
-
-                    form No : {{i}}
-                    <div>
-                      id <input formControlName="id" [value]="position.id">
-                    </div>
-
-                    <div>
-                      position <input formControlName="position" [value]="position.position">
-                    </div>
-                    <button (click)="deleteAddressGroup(i)">Delete - {{i}}</button>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
                 <label for="additional" class="label col-sm-3 col-form-label">Additional information</label>
                 <div class="col-sm-9">
                   <textarea fullWidth type="text" placeholder="Enter additional information" id="additional"
                             class="form-control"
-                            formControlName="additional"></textarea>
+                            formControlName="additional"
+                            [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}"></textarea>
                 </div>
               </div>
               <button nbButton nbStepperPrevious>prev</button>

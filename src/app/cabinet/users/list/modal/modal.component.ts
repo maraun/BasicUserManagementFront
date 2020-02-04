@@ -27,7 +27,7 @@ export class ModalComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  user: User = null;
+  user: User = new User();
   user2: User = null;
   profile2: Profile = null;
   contacts2: Contacts = null;
@@ -47,6 +47,9 @@ export class ModalComponent implements OnInit {
               private toast: ToastService,
               private userService: UserService,
               private xProfileService: XprofileService) {
+    this.firstForm = this.initFirstForm();
+    this.secondForm = this.initSecondForm();
+    this.thirdForm = this.initThirdForm();
   }
 
   dismiss() {
@@ -55,9 +58,22 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     this.loadXprofile();
-    this.initForm();
-    this.loading = true;
-    this.loadData();
+
+    if (this.id === 0) {
+      this.user = new User();
+    } else {
+      this.userService.getByProfileId(this.id).subscribe((perf) => {
+          this.user = perf;
+          this.loading = false;
+          this.userExist = !!this.user;
+          this.firstForm = this.initFirstForm();
+          this.secondForm = this.initSecondForm();
+          this.thirdForm = this.initThirdForm();
+        },
+        err => {
+          this.toast.error('Data not loaded', 'cloud-download-outline');
+        });
+    }
   }
 
   onFirstSubmit() {
@@ -90,85 +106,6 @@ export class ModalComponent implements OnInit {
           this.toast.error('Changes can not be saved', 'cloud-download-outline');
         });
 
-    }
-  }
-
-  initForm() {
-    this.firstForm = new FormGroup({
-      iin: new FormControl(),
-      password: new FormControl(),
-      lastname: new FormControl(),
-      firstname: new FormControl(),
-      middlename: new FormControl(),
-      previousLastname: new FormControl(),
-      birthDate: new FormControl(),
-      gender: new FormControl(),
-      maritalStatus: new FormControl(),
-    });
-    this.secondForm = new FormGroup({
-      nationality: new FormControl(),
-      citizenship: new FormControl(),
-      livingPlace: new FormControl(),
-      registrationPlace: new FormControl(),
-      email: new FormControl(),
-      mobilePhone: new FormControl(),
-      workPhone: new FormControl(),
-      homePhone: new FormControl(),
-    });
-    this.thirdForm = new FormGroup({
-      additional: new FormControl(),
-      positions: new FormArray([
-        new FormGroup({
-          id: new FormControl(),
-          starttime: new FormControl(),
-          finishtime: new FormControl(),
-          organization: new FormControl(),
-          position: new FormControl(),
-        }),
-      ]),
-      documents: new FormArray([]),
-    });
-  }
-
-  loadData() {
-    if (this.id === 0) {
-      this.user = new User();
-    } else {
-      this.userService.getByProfileId(this.id).subscribe((perf) => {
-          this.user = perf;
-          this.loading = false;
-          this.userExist = !!this.user;
-          this.firstForm = this.fb.group({
-            iin: [this.user.username, Validators.required],
-            password: ['*', Validators.required],
-            lastname: [this.user.profile.lastname, Validators.required],
-            firstname: [this.user.profile.firstname, Validators.required],
-            middlename: [this.user.profile.middlename],
-            previousLastname: [this.user.profile.previouslastname],
-            birthDate: [this.user.profile.birthdate, Validators.required],
-            gender: [this.user.profile.gender.id, Validators.required],
-            maritalStatus: [this.user.profile.maritalStatus.id, Validators.required],
-          });
-          this.secondForm = this.fb.group({
-            nationality: [this.user.profile.nationality.id, Validators.required],
-            citizenship: [this.user.profile.citizenship.id, Validators.required],
-            livingPlace: [this.user.profile.livingPlace, Validators.required],
-            registrationPlace: [this.user.profile.registrationPlace, Validators.required],
-            email: [this.user.contacts.email, Validators.required],
-            mobilePhone: [this.user.contacts.mobilephone, Validators.required],
-            workPhone: [this.user.contacts.workphone, Validators.required],
-            homePhone: [this.user.contacts.homephone],
-          });
-
-          this.thirdForm = this.fb.group({
-            additional: [this.user.additional.information],
-            positions: [this.user.positions],
-            documents: [this.user.documents],
-          });console.log(this.thirdForm.controls.positions.value);
-        },
-        err => {
-          this.toast.error('Data not loaded', 'cloud-download-outline');
-        });
     }
   }
 
@@ -228,6 +165,41 @@ export class ModalComponent implements OnInit {
     });
     this.xProfileService.getMaritalStatuses().subscribe(data => {
       this.maritalStatuses = data;
+    });
+  }
+
+  private initFirstForm() {
+    return this.fb.group({
+      iin: [!this.user.username ? '' : this.user.username],
+      password: ['*', Validators.required],
+      lastname: [!this.user.profile ? '' : this.user.profile.lastname],
+      firstname: [!this.user.profile ? '' : this.user.profile.firstname],
+      middlename: [!this.user.profile ? '' : this.user.profile.middlename],
+      previousLastname: [!this.user.profile ? '' : this.user.profile.previouslastname],
+      birthDate: [!this.user.profile ? '' : this.user.profile.birthdate],
+      gender: [!this.user.profile ? '' : this.user.profile.gender.id],
+      maritalStatus: [!this.user.profile ? '' : this.user.profile.maritalStatus.id],
+    });
+  }
+
+  private initSecondForm() {
+    return this.fb.group({
+      nationality: [!this.user.profile ? '' : this.user.profile.nationality.id],
+      citizenship: [!this.user.profile ? '' : this.user.profile.citizenship.id],
+      livingPlace: [!this.user.profile ? '' : this.user.profile.livingPlace],
+      registrationPlace: [!this.user.profile ? '' : this.user.profile.registrationPlace],
+      email: [!this.user.contacts ? '' : this.user.contacts.email],
+      mobilePhone: [!this.user.contacts ? '' : this.user.contacts.mobilephone],
+      workPhone: [!this.user.contacts ? '' : this.user.contacts.workphone],
+      homePhone: [!this.user.contacts ? '' : this.user.contacts.homephone],
+    });
+  }
+
+  private initThirdForm() {
+    return this.fb.group({
+      additional: [!this.user.additional ? '' : this.user.additional.information],
+      /*      positions: [this.user.positions],
+            documents: [this.user.documents],*/
     });
   }
 }
