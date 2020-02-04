@@ -101,8 +101,12 @@
               <div class="form-group row">
                 <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
                 <div class="col-sm-9">
+<<<<<<< HEAD
                   <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality"
                              required>
+=======
+                  <nb-select fullWidth placeholder="Enter nationality" id="nationality" formControlName="nationality">
+>>>>>>> parent of 6c59323... Validators finished
                     <nb-option *ngFor="let nationality of nationalities"
                                [value]="nationality.id">{{nationality.name}}</nb-option>
                   </nb-select>
@@ -122,7 +126,8 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter living place" id="livingPlace"
                          class="form-control"
-                         formControlName="livingPlace">
+                         formControlName="livingPlace"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
               </div>
               <div class="form-group row">
@@ -130,25 +135,26 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter registration place" id="registrationPlace"
                          class="form-control"
-                         formControlName="registrationPlace">
+                         formControlName="registrationPlace"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
               </div>
               <hr>
               <div class="form-group row">
                 <label for="email" class="label col-sm-3 col-form-label">e-mail</label>
                 <div class="col-sm-9">
-                  <input nbInput fullWidth type="email" placeholder="Enter email" id="email" class="form-control"
-                         formControlName="email" required email pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}"
-                         [ngClass]="{'form-control-danger': secondForm.controls.email.invalid && secondForm.controls.email.touched}">
+                  <input nbInput fullWidth type="text" placeholder="Enter email" id="email" class="form-control"
+                         formControlName="email"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="mobilePhone" class="label col-sm-3 col-form-label">Mobile phone</label>
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter mobile phone" id="mobilePhone"
-                         class="form-control" required pattern="[0-9]{11}"
+                         class="form-control"
                          formControlName="mobilePhone"
-                         [ngClass]="{'form-control-danger': secondForm.controls.mobilePhone.invalid && secondForm.controls.mobilePhone.touched}">
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
               </div>
               <div class="form-group row">
@@ -156,7 +162,8 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter work phone" id="workPhone"
                          class="form-control"
-                         formControlName="workPhone" pattern="[0-9]{11}">
+                         formControlName="workPhone"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
               </div>
               <div class="form-group row">
@@ -164,11 +171,12 @@
                 <div class="col-sm-9">
                   <input nbInput fullWidth type="text" placeholder="Enter home phone" id="homePhone"
                          class="form-control"
-                         formControlName="homePhone">
+                         formControlName="homePhone"
+                         [ngClass]="{'form-control-danger': secondForm.invalid && (secondForm.dirty || secondForm.touched)}">
                 </div>
               </div>
               <button nbButton nbStepperPrevious>prev</button>
-              <button nbButton nbStepperNext [disabled]="!secondForm.valid">next</button>
+              <button nbButton nbStepperNext>next</button>
             </form>
           </nb-step>
           <nb-step [stepControl]="thirdForm" label="Additional info">
