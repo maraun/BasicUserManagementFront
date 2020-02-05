@@ -70,8 +70,6 @@ export class ModalComponent implements OnInit {
           this.firstForm = this.initFirstForm();
           this.secondForm = this.initSecondForm();
           this.thirdForm = this.initThirdForm();
-          console.log(this.user.positions);
-          console.log(this.thirdForm.controls.positions);
         },
         err => {
           this.toast.error('Data not loaded', 'cloud-download-outline');
