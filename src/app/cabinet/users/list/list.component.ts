@@ -175,7 +175,13 @@ export class ListComponent implements OnInit {
 
   delete(id) {
     if (confirm('Delete user?')) {
-      this.userService.delete(id).subscribe(perf => {});
+      this.userService.getByProfileId(id).subscribe(perf => {
+        const user = <User>perf;
+        this.userService.delete(user.id).subscribe(perfo => {
+          this.toast.success('User deleted', 'person-remove-outline');
+        });
+      });
+
     } else {
       return false;
     }
