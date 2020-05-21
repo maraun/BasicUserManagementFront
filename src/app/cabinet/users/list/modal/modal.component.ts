@@ -27,7 +27,6 @@ export class ModalComponent implements OnInit {
   firstForm: FormGroup;
   secondForm: FormGroup;
   thirdForm: FormGroup;
-  positions: FormArray;
   user: User = new User();
   user2: User = null;
   profile2: Profile = null;
@@ -37,8 +36,6 @@ export class ModalComponent implements OnInit {
   citizenships: Citizenship[] = [];
   maritalStatuses: MaritalStatus[] = [];
   genders: Gender[] = [];
-  positions2: Set<Position> = new Set<Position>();
-  documents2: Set<Document> = new Set<Document>();
   roles2: Set<Role> = new Set<Role>();
   loading = false;
   userExist = false;
@@ -146,8 +143,6 @@ export class ModalComponent implements OnInit {
       username: this.firstForm.value.iin,
       password: this.firstForm.value.password,
       roles: (this.id === 0) ? null : this.user.roles,
-      positions: (this.id === 0) ? null : this.user.positions,
-      documents: (this.id === 0) ? null : this.user.documents,
       profile: this.profile2,
       contacts: this.contacts2,
       additional: this.additional2,
@@ -199,22 +194,6 @@ export class ModalComponent implements OnInit {
   private initThirdForm() {
     return this.fb.group({
       additional: [!this.user.additional ? '' : this.user.additional.information],
-      positions: this.fb.array([this.initPosition()]),
-      documents: this.fb.array([this.user.documents]),
-    });
-  }
-
-  private addPosition() {
-    const pos = this.thirdForm.controls.positions.value as FormArray;
-    pos.push(this.fb.group({
-      id: [],
-      position: '',
-    }));
-  }
-  private initPosition() {
-    return this.fb.group({
-      id: ['asdasd'],
-      position: ['asdasd'],
     });
   }
 }
