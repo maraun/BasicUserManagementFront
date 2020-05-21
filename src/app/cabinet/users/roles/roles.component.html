@@ -1,1 +1,23 @@
-<p>roles works!</p>
+<div class="row">
+  <div class="col-md-4">
+    <nb-card accent="info"
+             nbSpinnerStatus="info"
+             nbSpinnerSize="small"
+             nbSpinnerMessage="">
+      <nb-card-header>Roles</nb-card-header>
+      <nb-card-body>
+
+          <nb-radio-group [(value)]="selectedOption" (valueChange)="selectRole()">
+              <nb-radio  *ngFor="let role of roles"  [value]="role.id">
+              {{ role.name }}
+              </nb-radio>
+          </nb-radio-group>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-8" *ngIf="selectedOption">
+    <ngx-role-settings></ngx-role-settings>
+  </div>
+  <div *ngIf="!selectedOption"> Please select role to view settings...</div>
+</div>
