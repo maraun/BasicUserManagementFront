@@ -4,7 +4,7 @@
              nbSpinnerStatus="info"
              nbSpinnerSize="small"
              nbSpinnerMessage="">
-      <nb-card-header>Roles</nb-card-header>
+      <nb-card-header>Groups</nb-card-header>
       <nb-card-body>
 
           <nb-radio-group [(value)]="selectedOption" (valueChange)="selectRole()">
@@ -19,5 +19,5 @@
   <div class="col-md-8" *ngIf="selectedOption">
     <ngx-role-settings></ngx-role-settings>
   </div>
-  <div *ngIf="!selectedOption"> Please select role to view settings...</div>
+  <div *ngIf="!selectedOption"> Please select group to view settings...</div>
 </div>
