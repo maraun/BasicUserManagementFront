@@ -6,6 +6,8 @@ import {Profile} from '../../../@core/models/profile/profile';
 import {NbDialogService} from '@nebular/theme';
 import {ModalComponent} from './modal/modal.component';
 import {ToastService} from '../../../@core/services/toast.service';
+import {TokenStorageService} from '../../../auth/token-storage.service';
+import {RoleService} from "../../../@core/services/role.service";
 
 @Component({
   selector: 'ngx-button-view',
@@ -103,11 +105,11 @@ export class ListComponent implements OnInit {
         type: 'string',
       },
       button: {
-        title: 'Edit',
+        title: (this.roleService.hasRole('ROLE_ADMIN') || this.roleService.hasRole('ROLE_PM')) ? 'Edit' : '',
         type: 'custom',
         width: '20px',
         filter: false,
-        renderComponent: ButtonViewComponent,
+        renderComponent: !(this.roleService.hasRole('ROLE_ADMIN') || this.roleService.hasRole('ROLE_PM')) ? null : ButtonViewComponent,
         onComponentInitFunction: (instance) => {
           instance.save.subscribe(row => {
             this.openModal(row.id);
@@ -115,11 +117,11 @@ export class ListComponent implements OnInit {
         },
       },
       button2: {
-        title: 'Delete',
+        title: (this.roleService.hasRole('ROLE_ADMIN')) ? 'Delete' : '',
         type: 'custom',
         width: '20px',
         filter: false,
-        renderComponent: ButtonDeleteComponent,
+        renderComponent: (!this.roleService.hasRole('ROLE_ADMIN')) ? null : ButtonDeleteComponent,
         onComponentInitFunction: (instance) => {
           instance.save.subscribe(row => {
             this.delete(row.id);
@@ -145,10 +147,11 @@ export class ListComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
   users: Profile[] = [];
-
+  roles: string[] = [];
   constructor(private userService: UserService,
               private dialogService: NbDialogService,
-              private toast: ToastService) {
+              private toast: ToastService,
+              private roleService: RoleService) {
   }
 
   ngOnInit() {
