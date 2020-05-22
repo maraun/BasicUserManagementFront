@@ -13,10 +13,7 @@ export const CMENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Roles',
         link: '/cabinet/users/roles',
-      },
-      {
-        title: 'Structure',
-        link: '/cabinet/users/structure',
+        hidden: ngxHasRole
       },
     ],
   },
