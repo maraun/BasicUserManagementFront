@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NbMenuItem} from '@nebular/theme';
+import {TokenStorageService} from '../auth/token-storage.service';
+
 
 @Component({
   selector: 'ngx-cabinet',
@@ -17,7 +19,7 @@ export class CabinetComponent {
         {
           title: 'List',
           link: '/cabinet/users/list',
-          hidden: false,
+          hidden: !this.hasRole('ROLE_ADMIN'),
         },
         {
           title: 'Roles',
@@ -28,6 +30,15 @@ export class CabinetComponent {
     },
   ]
 cmenu = this.CMENU_ITEMS;
-
+  roles: string[] = [];
+  constructor(private tokenStorage: TokenStorageService) {}
+  hasRole(checkRole: string): boolean {
+    this.roles = this.tokenStorage.getAuthorities();
+    if (this.roles.includes(checkRole)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
