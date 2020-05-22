@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NbMenuItem} from '@nebular/theme';
-import {TokenStorageService} from '../auth/token-storage.service';
+import {RoleService} from '../@core/services/role.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class CabinetComponent {
         {
           title: 'List',
           link: '/cabinet/users/list',
-          hidden: !this.hasRole('ROLE_ADMIN'),
+          hidden: (!this.roleService.hasRole('ROLE_ADMIN') && !this.roleService.hasRole('ROLE_PM')),
         },
         {
           title: 'Roles',
@@ -30,15 +30,8 @@ export class CabinetComponent {
     },
   ];
   cmenu = this.CMENU_ITEMS;
-  roles: string[] = [];
-  constructor(private tokenStorage: TokenStorageService) {}
-  hasRole(checkRole: string): boolean {
-    this.roles = this.tokenStorage.getAuthorities();
-    if (this.roles.includes(checkRole)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+
+  constructor(private roleService: RoleService) {}
+
 }
 
