@@ -13,7 +13,8 @@ export class RoleService {
   public findAll(): Observable<Role[]> {
     return this.http.get<Role[]>(this.apiUrl);
   }
-  public getByProfileId(id): Observable<Role> {
+  public getByRoleId(id): Observable<Role> {
     return this.http.get<Role>(`${this.apiUrl}/${id}`);
   }
+
 }

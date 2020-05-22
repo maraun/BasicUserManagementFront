@@ -30,7 +30,7 @@ export class RolesComponent implements OnInit {
       });
   }
   selectRole() {
-    this.roleService.getByProfileId(+this.selectedOption).subscribe(data => {
+    this.roleService.getByRoleId(+this.selectedOption).subscribe(data => {
         this.selectedRole = data;
       },
       err => {
