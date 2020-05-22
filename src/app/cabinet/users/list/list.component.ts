@@ -6,8 +6,7 @@ import {Profile} from '../../../@core/models/profile/profile';
 import {NbDialogService} from '@nebular/theme';
 import {ModalComponent} from './modal/modal.component';
 import {ToastService} from '../../../@core/services/toast.service';
-import {TokenStorageService} from '../../../auth/token-storage.service';
-import {RoleService} from "../../../@core/services/role.service";
+import {RoleService} from '../../../@core/services/role.service';
 
 @Component({
   selector: 'ngx-button-view',
@@ -109,7 +108,10 @@ export class ListComponent implements OnInit {
         type: 'custom',
         width: '20px',
         filter: false,
-        renderComponent: !(this.roleService.hasRole('ROLE_ADMIN') || this.roleService.hasRole('ROLE_PM')) ? null : ButtonViewComponent,
+        renderComponent: !(
+                            this.roleService.hasRole('ROLE_ADMIN') ||
+                            this.roleService.hasRole('ROLE_PM')
+                          ) ? null : ButtonViewComponent,
         onComponentInitFunction: (instance) => {
           instance.save.subscribe(row => {
             this.openModal(row.id);
