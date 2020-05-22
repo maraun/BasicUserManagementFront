@@ -28,8 +28,8 @@ export class CabinetComponent {
         },
       ],
     },
-  ]
-cmenu = this.CMENU_ITEMS;
+  ];
+  cmenu = this.CMENU_ITEMS;
   roles: string[] = [];
   constructor(private tokenStorage: TokenStorageService) {}
   hasRole(checkRole: string): boolean {
