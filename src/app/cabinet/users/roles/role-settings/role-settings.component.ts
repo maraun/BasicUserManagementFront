@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RolesComponent} from "../roles.component";
+import {RolesComponent} from '../roles.component';
 
 @Component({
   selector: 'ngx-role-settings',
