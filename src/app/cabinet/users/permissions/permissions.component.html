@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6">
+    <nb-card accent="info"
+             nbSpinnerStatus="info"
+             nbSpinnerSize="small"
+             nbSpinnerMessage="">
+      <nb-card-header>Permissions</nb-card-header>
+      <nb-card-body>
+        <nb-accordion>
+          <nb-accordion-item *ngFor="let groupRole of groupRoles">
+            <nb-accordion-item-header>{{ groupRole.name}}</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <nb-radio-group [(value)]="selectedPermissionOption" (valueChange)="getPermissionHolders()">
+                <nb-radio  *ngFor="let role of groupRole.roles"  [value]="role.id">
+                  {{ role.name}}
+                </nb-radio>
+              </nb-radio-group>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-6" *ngIf="selectedPermissionOption">
+    <ngx-permission-holders></ngx-permission-holders>
+  </div>
+</div>
