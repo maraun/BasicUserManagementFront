@@ -2,14 +2,19 @@
          nbSpinnerStatus="info"
          nbSpinnerSize="small"
          nbSpinnerMessage="">
-  <nb-card-header>Permissions holders</nb-card-header>
+  <nb-card-header>Permissions holders <button nbButton ghost size="tiny" status="success" shape="round" ><nb-icon icon="person-add"></nb-icon>Add user</button> </nb-card-header>
   <nb-card-body>
     <nb-list>
-      <nb-list-item *ngFor="let user of permissionsComponent.users">
-        {{ user.id }} <button>as</button>
+      <nb-list-item *ngFor="let user of permissionsComponent.users" class="clearfix">
+        <div class="float-left">
+        {{ user.id }}
         {{ user.profile.firstname }}
         {{ user.profile.lastname }}
+        </div>
+        <div class="float-right">
 
+          <button nbButton ghost size="tiny" status="danger" shape="round" ><nb-icon icon="close-circle"></nb-icon></button>
+        </div>
       </nb-list-item>
     </nb-list>
   </nb-card-body>
