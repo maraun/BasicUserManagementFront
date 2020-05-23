@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PermissionsComponent} from '../permissions.component';
 
 @Component({
   selector: 'ngx-permission-holders',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissionHoldersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private permissionsComponent: PermissionsComponent) { }
 
   ngOnInit() {
   }
