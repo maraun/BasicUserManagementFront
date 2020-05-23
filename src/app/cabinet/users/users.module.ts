@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UsersRoutingModule } from './users-routing.module';
 import {ButtonDeleteComponent, ButtonViewComponent, ListComponent} from './list/list.component';
-import { RolesComponent } from './roles/roles.component';
-import { StructureComponent } from './structure/structure.component';
 import {
+  NbAccordionModule,
   NbAlertModule, NbBadgeModule,
   NbButtonModule,
   NbCardModule, NbDatepickerModule,
@@ -17,18 +15,18 @@ import {
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import { ModalComponent } from './list/modal/modal.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { RoleSettingsComponent } from './roles/role-settings/role-settings.component';
+import { PermissionsComponent } from './permissions/permissions.component';
+import { PermissionHoldersComponent } from './permissions/permission-holders/permission-holders.component';
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    RolesComponent,
-    StructureComponent,
     ButtonViewComponent,
     ModalComponent,
     ButtonDeleteComponent,
-    RoleSettingsComponent],
+    PermissionsComponent,
+    PermissionHoldersComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -48,6 +46,7 @@ import { RoleSettingsComponent } from './roles/role-settings/role-settings.compo
     NbTabsetModule,
     NbAlertModule,
     NbBadgeModule,
+    NbAccordionModule,
   ],
   entryComponents: [ButtonViewComponent, ModalComponent, ButtonDeleteComponent],
 })

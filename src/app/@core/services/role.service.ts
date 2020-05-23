@@ -32,5 +32,8 @@ export class RoleService {
   public findAllGroupRoles(): Observable<GroupRoles[]> {
     return this.http.get<GroupRoles[]>(this.apiUrlGroupRoles);
   }
+  public getByGroupRoleId(id): Observable<GroupRoles> {
+    return this.http.get<GroupRoles>(`${this.apiUrlGroupRoles}/${id}`);
+  }
 
 }

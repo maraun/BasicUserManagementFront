@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ListComponent} from './list/list.component';
-import {RolesComponent} from './roles/roles.component';
-import {StructureComponent} from './structure/structure.component';
+import {PermissionsComponent} from './permissions/permissions.component';
 
 
 const routes: Routes = [{
@@ -13,12 +12,8 @@ const routes: Routes = [{
       component: ListComponent,
     },
     {
-      path: 'roles',
-      component: RolesComponent,
-    },
-    {
-      path: 'structure',
-      component: StructureComponent,
+      path: 'permissions',
+      component: PermissionsComponent,
     },
   ],
 }];

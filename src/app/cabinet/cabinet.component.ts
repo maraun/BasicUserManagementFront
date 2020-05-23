@@ -22,8 +22,8 @@ export class CabinetComponent {
           hidden: (!this.roleService.hasRole('ROLE_ADMIN') && !this.roleService.hasRole('ROLE_PM')),
         },
         {
-          title: 'Roles',
-          link: '/cabinet/users/roles',
+          title: 'Permissions',
+          link: '/cabinet/users/permissions',
           hidden: false,
         },
       ],
