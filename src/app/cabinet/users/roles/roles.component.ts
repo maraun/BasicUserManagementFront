@@ -3,6 +3,7 @@ import {NbDialogService} from '@nebular/theme';
 import {ToastService} from '../../../@core/services/toast.service';
 import {RoleService} from '../../../@core/services/role.service';
 import {Role} from '../../../@core/models/profile/role';
+import {GroupRoles} from '../../../@core/models/profile/GroupRoles';
 
 @Component({
   selector: 'ngx-roles',
@@ -13,12 +14,13 @@ export class RolesComponent implements OnInit {
   roles: Role[] = [];
   selectedRole: Role;
   selectedOption: string;
+  groupRoles: GroupRoles[] = [];
   constructor(private roleService: RoleService,
     private dialogService: NbDialogService,
     private toast: ToastService) { }
 
   ngOnInit() {
-    this.fetchAll();
+    this.fetchAllGroupRoles();
   }
 
   fetchAll() {
@@ -27,6 +29,14 @@ export class RolesComponent implements OnInit {
       },
       err => {
         this.toast.error('Data not loaded', 'cloud-download-outline');
+      });
+  }
+  fetchAllGroupRoles() {
+    this.roleService.findAllGroupRoles().subscribe(data => {
+      this.groupRoles = data;
+    },
+      error => {
+      this.toast.error('Data not loaded', 'cloud-download-outline');
       });
   }
   selectRole() {

@@ -4,12 +4,12 @@
              nbSpinnerStatus="info"
              nbSpinnerSize="small"
              nbSpinnerMessage="">
-      <nb-card-header>Groups</nb-card-header>
+      <nb-card-header>Modules</nb-card-header>
       <nb-card-body>
 
           <nb-radio-group [(value)]="selectedOption" (valueChange)="selectRole()">
-              <nb-radio  *ngFor="let role of roles"  [value]="role.id">
-              {{ role.name }}
+              <nb-radio  *ngFor="let groupRole of groupRoles"  [value]="groupRole.id">
+              {{ groupRole.name}}
               </nb-radio>
           </nb-radio-group>
 
