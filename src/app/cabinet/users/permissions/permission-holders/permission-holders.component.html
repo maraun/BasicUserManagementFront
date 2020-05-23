@@ -1,1 +1,16 @@
-<p>permission-holders works!</p>
+<nb-card accent="success"
+         nbSpinnerStatus="info"
+         nbSpinnerSize="small"
+         nbSpinnerMessage="">
+  <nb-card-header>Permissions holders</nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let user of permissionsComponent.users">
+        {{ user.id }} <button>as</button>
+        {{ user.profile.firstname }}
+        {{ user.profile.lastname }}
+
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>
