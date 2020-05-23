@@ -4,12 +4,14 @@ import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {Role} from '../models/profile/role';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {GroupRoles} from '../models/profile/GroupRoles';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleService {
   apiUrl = environment.apiUrl + '/api/profile/roles';
+  apiUrlGroupRoles = environment.apiUrl + '/api/profile/grouproles';
   roles: string[] = [];
   constructor(public http: HttpClient,
               public tokenStorage: TokenStorageService) { }
@@ -26,6 +28,9 @@ export class RoleService {
     } else {
       return false;
     }
+  }
+  public findAllGroupRoles(): Observable<GroupRoles[]> {
+    return this.http.get<GroupRoles[]>(this.apiUrlGroupRoles);
   }
 
 }
