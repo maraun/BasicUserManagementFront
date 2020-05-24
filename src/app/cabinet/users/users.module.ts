@@ -17,6 +17,7 @@ import { ModalComponent } from './list/modal/modal.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { PermissionHoldersComponent } from './permissions/permission-holders/permission-holders.component';
+import { PermissionHolderAddComponent } from './permissions/permission-holders/permission-holder-add/permission-holder-add.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PermissionHoldersComponent } from './permissions/permission-holders/per
     ModalComponent,
     ButtonDeleteComponent,
     PermissionsComponent,
-    PermissionHoldersComponent],
+    PermissionHoldersComponent,
+    PermissionHolderAddComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -48,6 +50,6 @@ import { PermissionHoldersComponent } from './permissions/permission-holders/per
     NbBadgeModule,
     NbAccordionModule,
   ],
-  entryComponents: [ButtonViewComponent, ModalComponent, ButtonDeleteComponent],
+  entryComponents: [ButtonViewComponent, ModalComponent, ButtonDeleteComponent, PermissionHolderAddComponent],
 })
 export class UsersModule { }
