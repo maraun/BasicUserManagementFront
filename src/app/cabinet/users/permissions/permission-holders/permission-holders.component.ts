@@ -4,6 +4,8 @@ import {User} from '../../../../@core/models/profile/user';
 import {ToastService} from '../../../../@core/services/toast.service';
 import {UserService} from '../../../../@core/services/user.service';
 import {Role} from '../../../../@core/models/profile/role';
+import {NbDialogService} from '@nebular/theme';
+import {PermissionHolderAddComponent} from './permission-holder-add/permission-holder-add.component';
 
 @Component({
   selector: 'ngx-permission-holders',
@@ -16,7 +18,8 @@ export class PermissionHoldersComponent implements OnInit {
   private user: User = new User();
   private roles: Role[];
   constructor( private toast: ToastService,
-              private userService: UserService) { }
+              private userService: UserService,
+               private dialogService: NbDialogService) { }
 
   ngOnInit() {
   }
@@ -41,5 +44,14 @@ export class PermissionHoldersComponent implements OnInit {
       err => {
         this.toast.error('Something gone wrong', 'cloud-download-outline');
       });
+  }
+
+  addHolder() {
+    this.dialogService.open(PermissionHolderAddComponent, {
+      context: {
+        roleName: `role with id this.selectedPermissionOption`,
+        roleId: this.selectedPermissionOption,
+      },
+    });
   }
 }

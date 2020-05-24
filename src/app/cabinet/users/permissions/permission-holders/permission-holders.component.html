@@ -2,7 +2,7 @@
          nbSpinnerStatus="info"
          nbSpinnerSize="small"
          nbSpinnerMessage="">
-  <nb-card-header>Permissions holders <button nbButton ghost size="tiny" status="success" shape="round" ><nb-icon icon="person-add"></nb-icon>Add user</button> </nb-card-header>
+  <nb-card-header>Permissions holders <button nbButton ghost size="tiny" status="success" shape="round" (click)="addHolder()"><nb-icon icon="person-add"></nb-icon>Add user</button> </nb-card-header>
   <nb-card-body>
     <nb-list>
       <nb-list-item *ngFor="let user of users" class="clearfix">
