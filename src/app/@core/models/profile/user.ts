@@ -9,7 +9,8 @@ export class User {
   id: number;
   username: string;
   password?: string;
-  roles: Set<Role>;
+  /*roles: Set<Role>;*/
+  roles: Role[];
   profile: Profile;
   documents?: Set<Document>;
   positions?: Position[];
