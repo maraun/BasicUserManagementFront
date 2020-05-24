@@ -15,6 +15,7 @@ export class PermissionsComponent implements OnInit {
   groupRoles: GroupRoles[] = [];
   users: User[] = [];
   selectedPermissionOption: string;
+  user: User;
   constructor(private roleService: RoleService,
               private userService: UserService,
               private dialogService: NbDialogService,
@@ -40,4 +41,5 @@ export class PermissionsComponent implements OnInit {
         this.toast.error('Data not loaded', 'cloud-download-outline');
       });
   }
+
 }

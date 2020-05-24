@@ -16,6 +16,9 @@
 
   </div>
   <div class="col-md-6" *ngIf="selectedPermissionOption">
-    <ngx-permission-holders></ngx-permission-holders>
+    <ngx-permission-holders [selectedPermissionOption]="selectedPermissionOption"
+                            [users]="users">
+
+    </ngx-permission-holders>
   </div>
 </div>
