@@ -1,0 +1,7 @@
+@import 'src/app/@theme/styles/themes.scss';
+@include nb-install-component() {
+  nb-card {
+    max-width: 700px;
+    max-height: 500px;
+  }
+}
