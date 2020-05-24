@@ -36,7 +36,6 @@ export class ModalComponent implements OnInit {
   citizenships: Citizenship[] = [];
   maritalStatuses: MaritalStatus[] = [];
   genders: Gender[] = [];
-  roles2: Set<Role> = new Set<Role>();
   loading = false;
   userExist = false;
 
