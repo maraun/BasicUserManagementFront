@@ -11,7 +11,9 @@ import {Profile} from '../models/profile/profile';
 export class UserService {
   apiUrl = environment.apiUrl + '/api/profile/users';
   apiUrl2 = environment.apiUrl + '/api/profile/profile';
-
+/*
+  localhost:8080/api/profile/profile/search?keyword=henr
+*/
   constructor(public http: HttpClient) { }
 
   public current(): Observable<User> {
@@ -22,6 +24,9 @@ export class UserService {
   }
    public findAll(): Observable<Profile[]> {
     return this.http.get<Profile[]>(this.apiUrl2);
+  }
+  public findByKeyword(text: string): Observable<Profile[]> {
+    return this.http.get<Profile[]>(`${this.apiUrl2}/search?keyword=${text}`);
   }
   public findAllByRole(id): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/rid/${id}`);

@@ -51,6 +51,7 @@ export class PermissionHoldersComponent implements OnInit {
       context: {
         roleName: `role with id this.selectedPermissionOption`,
         roleId: this.selectedPermissionOption,
+        userlist: this.users,
       },
     });
   }

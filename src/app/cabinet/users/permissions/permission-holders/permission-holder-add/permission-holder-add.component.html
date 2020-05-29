@@ -1,17 +1,20 @@
 <nb-card>
-  <nb-card-header><input type="text" nbInput fullWidth placeholder="Start entering surname"></nb-card-header>
+  <nb-card-header><input type="text" nbInput fullWidth placeholder="Start entering surname" #box (keyup)="onKey(box.value)"></nb-card-header>
   <nb-card-body>
     <nb-list>
-      <nb-list-item class="clearfix">
+      <nb-list-item class="clearfix" *ngFor="let user of users">
         <div class="float-left">
-          John Tra Voltra {{roleId}}{{roleName}}
+          {{ user.id }}
+          {{ user.firstname }}
+          {{ user.lastname }}
+          <!--John Tra Voltra {{roleId}}{{roleName}}-->
         </div>
         <div class="float-right">
+          {{user.id}}
           <button nbButton ghost size="tiny" status="success" shape="round"><nb-icon icon="plus-circle"></nb-icon></button>
         </div>
       </nb-list-item>
     </nb-list>
-
   </nb-card-body>
   <nb-card-footer>
     <button nbButton hero status="danger" (click)="dismiss()">Close</button>
