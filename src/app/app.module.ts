@@ -24,9 +24,10 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {DirectivesModule} from './shared/directives/directives.module';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
+import {IfRoleExistPipe} from './@core/pipes/if-role-exist.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, IfRoleExistPipe],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
