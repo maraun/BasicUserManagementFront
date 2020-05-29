@@ -147,9 +147,9 @@ export const NB_CORE_PROVIDERS = [
   imports: [
     CommonModule,
   ],
-  exports: [
-    NbAuthModule,
-  ],
+    exports: [
+        NbAuthModule,
+    ],
   declarations: [],
 })
 export class CoreModule {
