@@ -27,10 +27,12 @@ export class PermissionHolderAddComponent implements OnInit {
   }
 
   onKey(value: string) {
-    if (value.length > 3) {
+    if (value.length > 2) {
       setTimeout(() => this.userService.findByKeyword(value).subscribe((perf) => {
         this.users = perf;
       }), 1500);
+    } else {
+      this.users = [];
     }
 
   }
